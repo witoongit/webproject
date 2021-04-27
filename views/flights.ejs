@@ -1,0 +1,99 @@
+<%- include('partials/header.ejs') %>
+
+<link rel="stylesheet" href="/flights.css">
+
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 navdec">Home</a></li>
+                <li><a href="/flights" class="nav-link px-2 navact">Flights</a></li>
+                <li><a href="#" class="nav-link px-2 navdec">Hotel</a></li>
+                <li><a href="/sign-in" class="nav-link px-2 navdec">DogePoint</a></li>
+                <li><a href="/sign-in" class="nav-link px-2 navdec">Current Booking</a></li>
+            </ul>
+
+            <div class="text-end">
+                <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Login</button>
+                <button type="button"  onclick="location.href='/sign-up'" class="btn btn-warning">Sign-up</button>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div class="position-relative">
+    <img src="https://wallpaperaccess.com/full/2692164.jpg" class="banner">
+    <div class="position-absolute top-0 start-0 searchbox">
+
+        <div>
+            <button type="button" onclick="" class="btn btn-warning toptab">One way</button>
+            <button type="button" onclick="" class="btn btn-warning toptab">Roundtrip</button>
+        </div>    
+
+        <div class="dropdown tab">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu tab" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+        
+        <div class="dropdown tab">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu tab" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="dropdown col-lg-auto tab">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown col-lg-auto tab">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dropdown col-lg-auto tab">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+        
+        <button class="w-50 " type="submit">Search</button>
+    </div>
+</div>
+  <h1> Kill me</h1>
+    <h2> I'm dying </h2>
+    
+    
+<%- include('partials/footer.ejs') %>
+

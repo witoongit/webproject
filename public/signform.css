@@ -1,0 +1,56 @@
+.from-adj{
+    padding-top: 5%;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 5%;
+    height: 100vh;
+    width: 100%;
+    
+}
+.form-bg{
+    background: rgba(53, 53, 53, 0.8);
+    padding-top: 5vh;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 5vh;
+  
+}
+
+html, body {
+    margin: 0;
+    height: 100vh;
+    background-color: rgb(41, 41, 41);   
+}
+
+.bg {
+    background-image: url('http://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100vh;
+}
+.text-white {
+    color: white;
+}
+
+.half {
+    width: 100vh;
+    height: 100vh;
+}
+.fullscreen{
+    height: 100vh;
+}
+
+.input {
+    padding-bottom: 15px;
+}
+
+
+button{
+    background-color: goldenrod;
+}
+
+.text {
+    font-size: 2vw;
+    color: white;
+
+}

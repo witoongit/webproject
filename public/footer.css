@@ -1,0 +1,12 @@
+footer {
+    left: 0%;
+    bottom: 0%;
+    padding: 30px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    color: goldenrod;
+    text-align: center;
+    font-size: 25px;
+    margin: 0%;
+    /* position: fixed; */
+  }

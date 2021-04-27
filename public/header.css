@@ -1,0 +1,35 @@
+
+li {
+    color: goldenrod;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.navdec {
+    color: goldenrod;
+    text-decoration: none;
+}
+.navdec:hover {
+    color: rgb(255, 255, 255);
+    background-color: goldenrod;
+    border-radius: 2px ;
+    /* text-decoration: underline; */
+    /* transition: 0.35s; */
+}
+
+.navact {
+    color: rgb(255, 255, 255);
+    background-color: goldenrod;
+    border-radius: 2px ;
+    text-decoration: none;
+}
+
+
+.banner {
+    width: 100%;
+}
+
+
