@@ -5,8 +5,13 @@ footer {
     width: 100%;
     background-color: rgb(31, 31, 31);
     color: goldenrod;
-    text-align: center;
+    text-align: start;
     font-size: 25px;
-    margin: 0%;
+    margin: 5vw 0 0 0;
     /* position: fixed; */
+  }
+
+h6 {
+    color: goldenrod;
+    text-align: start;
   }

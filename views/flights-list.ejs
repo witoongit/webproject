@@ -1,0 +1,83 @@
+<%- include('partials/header.ejs') %>
+
+
+    <link rel="stylesheet" href="/flights-list.css">
+
+  <nav class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      
+  
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 navdec navadj">Home</a></li>
+          <li><a href="/flights" class="nav-link px-2 navact navadj">Flights</a></li>
+          <li><a href="#" class="nav-link px-2 navdec navadj">Hotels</a></li>
+          <li><a href="/sign-in" class="nav-link px-2 navdec navadj">DogePoint™</a></li>
+          <li><a href="/sign-in" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+        </ul>
+  
+     
+        <div class="text-end">
+          <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Login</button>
+          <button type="button"  onclick="location.href='/sign-up'" class="btn btn-warning">Sign-up</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div  class="result">
+    <h4>Flight result here</h4>
+    <h6>Date of departure</h6>
+
+    <ul>
+        <il>Filter</il>
+        <il type="button" class="button">cost</il>
+        <il type="button" class="button">flight time</il>
+        <il type="button" class="button">stop</il>
+        <il type="button" class="button">airline</il>
+    </ul>
+    
+  </div>
+
+  
+  <div  class="result-list">
+    <h4>Result </h4>
+    <h6>Flight Data</h6>
+  </div>
+
+  <div  class="result-list">
+    <h4>Result </h4>
+    <div class="row">
+      <div class="col">
+      <h6>Flight Data</h6>
+    </div>    
+      <div class="col">
+      <button type="submit" class="button" onclick="location.href='/flight-book'"> Book a fight </button>
+    </div>
+    </div>
+  </div>
+
+  <div  class="result-list">
+    <h4>Result </h4>
+    <h6>Flight Data</h6>
+  </div>
+
+  <div  class="result-list">
+    <h4>Result </h4>
+    <h6>Flight Data</h6>
+  </div>
+  
+  <div  class="result-list">
+    <h4>Result </h4>
+    <h6>Flight Data</h6>
+  </div>
+
+
+
+
+
+      
+    
+<%- include('partials/footer.ejs') %>
+

@@ -2,16 +2,16 @@
 
 <link rel="stylesheet" href="/flights.css">
 
-<header class="p-3 bg-dark text-white">
+<nav class="p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 navdec">Home</a></li>
-                <li><a href="/flights" class="nav-link px-2 navact">Flights</a></li>
-                <li><a href="#" class="nav-link px-2 navdec">Hotel</a></li>
-                <li><a href="/sign-in" class="nav-link px-2 navdec">DogePoint</a></li>
-                <li><a href="/sign-in" class="nav-link px-2 navdec">Current Booking</a></li>
+                <li><a href="/" class="nav-link px-2 navdec navadj">Home</a></li>
+                <li><a href="/flights" class="nav-link px-2 navact navadj">Flights</a></li>
+                <li><a href="#" class="nav-link px-2 navdec navadj">Hotels</a></li>
+                <li><a href="/sign-in" class="nav-link px-2 navdec navadj">DogePoint™</a></li>
+                <li><a href="/sign-in" class="nav-link px-2 navdec navadj">Current Booking</a></li>
             </ul>
 
             <div class="text-end">
@@ -21,78 +21,51 @@
 
         </div>
     </div>
-</header>
+</nav>
 
 <div class="position-relative">
     <img src="https://wallpaperaccess.com/full/2692164.jpg" class="banner">
     <div class="position-absolute top-0 start-0 searchbox">
 
-        <div>
-            <button type="button" onclick="" class="btn btn-warning toptab">One way</button>
-            <button type="button" onclick="" class="btn btn-warning toptab">Roundtrip</button>
-        </div>    
+        <button class="flight-tab">One way</button>
+        <button class="flight-tab">Roundtrip</button>
 
-        <div class="dropdown tab">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu tab" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
-        
-        <div class="dropdown tab">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu tab" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
-        <div class="row">
-            <div class="dropdown col-lg-auto tab">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+        <form class="form-signin text-center">
+             
+            <div class="form-floating input">
+                <input type="text" class="form-control" id="floatingLastname" placeholder="">
+                <label for="floatingLastname">From</label>
             </div>
 
-            <div class="dropdown col-lg-auto tab">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+            <div class="form-floating input">
+                <input type="text" class="form-control" id="floatingLastname" placeholder="">
+                <label for="floatingLastname">To</label>
             </div>
-        </div>
 
-        <div class="dropdown col-lg-auto tab">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
-        
-        <button class="w-50 " type="submit">Search</button>
+            <div class="row">
+                <div class="form-floating input col-lg-6">
+                    <input type="text" class="form-control" id="floatingLastname" placeholder="">
+                    <label for="floatingLastname" style="padding-left: 25px;">Depart date</label>
+                </div>
+
+                <div class="form-floating input col-lg-6">
+                    <input type="text" class="form-control" id="floatingLastname" placeholder="">
+                    <label for="floatingLastname" style="padding-left: 25px;">Return date</label>
+                </div>
+            </div>
+            <div class="form-floating input">
+                <input type="text" class="form-control" id="floatingLastname" placeholder="">
+                <label for="floatingLastname">Seat</label>
+            </div>
+
+
+            <button type="button"  onclick="location.href='/flights-list'" class="btn btn-warning text-center searchbutton">Search</button>
+        </form>
+
     </div>
+    
+    
 </div>
-  <h1> Kill me</h1>
-    <h2> I'm dying </h2>
     
     
 <%- include('partials/footer.ejs') %>

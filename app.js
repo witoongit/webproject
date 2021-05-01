@@ -42,6 +42,15 @@ app.get('/flights', function(req,res){
     res.render("flights.ejs")
 });
 
+app.get('/flights-list', function(req,res){
+    res.render("flights-list.ejs")
+});
+
+app.get('/flight-book', function(req,res){
+    res.render("flight-book.ejs")
+});
+
+
 app.get('/sign-in', function(req,res){
     res.render("sign-in.ejs")
 });

@@ -1,8 +1,9 @@
 
-li {
-    color: goldenrod;
+.navadj {
+
     display: inline-block;
     text-align: center;
+    margin: 5px;
     padding: 10px 12px;
     font-size: 18px;
     text-decoration: none;
@@ -32,4 +33,7 @@ li {
     width: 100%;
 }
 
-
+.button{
+    padding: 2.5px 10px 2.5px 10px ;
+    background-color: rgb(255, 187, 0);
+}

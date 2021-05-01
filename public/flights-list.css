@@ -1,0 +1,14 @@
+.result {
+    margin: 3vw 3vw 3vw 3vw;
+    padding: 5px 0 5px 5px;
+    border-radius: 5px;
+    border: 2px solid gray;
+}
+
+.result-list {
+    margin: 0.5vw 3vw 0.5vw 3vw;
+    padding: 5px 0 5px 5px;
+    border-radius: 5px;
+    border: 2px solid gray;
+}
+

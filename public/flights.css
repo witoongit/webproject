@@ -1,18 +1,33 @@
 .searchbox{
-    margin-left: 15vw;
-    margin-top: 10vh;
-    padding: 5vw;
+    margin-left: 5vw;
+    margin-top: 35px;
+    padding: 4vw;
     background: rgba(255, 255, 255, 0.5);
     border: solid 2px gray;
     border-radius: 5px;
+   
 }
 
-.tab{
-    padding: 10px 35px 10px 35px;
+.flight-tab{
+    font-size: medium;
+    background-color: rgb(255, 183, 0);
+    padding: 5px 140px 5px 5px;
+    border: solid gray 1px;
+    border-radius: 2px;
+    margin-left: 0;
+    font-size: medium;
+
+}
+
+.input{
+    margin: 5px 0 5px 0;
+
+}
+
+.searchbutton{
+    padding: 5px 15px 5px 15px;
+    margin-top: 25px;
+    margin-bottom: 0px;
     
 }
 
-.toptab{
-    margin: 0%;
-    padding: 10px 100px 10px 100px;
-}
