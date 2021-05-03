@@ -1,6 +1,4 @@
 footer {
-    left: 0%;
-    bottom: 0%;
     padding: 30px;
     width: 100%;
     background-color: rgb(31, 31, 31);
@@ -8,10 +6,12 @@ footer {
     text-align: start;
     font-size: 25px;
     margin: 5vw 0 0 0;
+    left: 0;
+    bottom: 0;
     /* position: fixed; */
   }
 
-h6 {
+.footer-text {
     color: goldenrod;
     text-align: start;
   }

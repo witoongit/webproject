@@ -1,14 +1,23 @@
-<%- include('partials/header.ejs') %>
-
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="icon" href="https://www.pngitem.com/pimgs/m/173-1730423_mlg-doge-png-doge-transparent-background-png-download.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <title>Airline</title>
+</head>
 
 <link rel="stylesheet" href="/signform.css">
 
 
 <div class="row text-center position-relative">
 
-  <div class=" container">
-  <form class="from-adj ">
+  <div class="form-container">
+  <form action='/sign-up' method="POST" class="from-adj" >
 
     <a href="/">
       <img class="mb-4" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="80" height="80">
@@ -17,57 +26,57 @@
     <h1 class="h3 mb-3 fw-normal text-white">Please sign up</h1>
 
     <div class="form-floating input">
-      <input type="text" class="form-control" id="floatingTitle" placeholder="e">
-      <label for="floatingTitle">title</label>
+      <input type="text" class="form-control" id="floatingTitle" name='title' placeholder="Title" required>
+      <label for="floatingTitle">Title</label>
     </div>
 
     <div class="row">
 
       <div class="form-floating input col-lg-6">
-        <input type="text" class="form-control" id="floatingFirstname" placeholder="e">
-        <label for="floatingFirstname" style="padding-left: 25px;">first name</label>
+        <input type="text" class="form-control" id="floatingFirstname" name='firstname' placeholder="First name" required>
+        <label for="floatingFirstname" style="padding-left: 25px;">First name</label>
       </div>
 
       <div class="form-floating input col-lg-6">
-        <input type="text" class="form-control" id="floatingLastname" placeholder="e">
-        <label for="floatingLastname" style="padding-left: 25px;">last name</label>
+        <input type="text" class="form-control" id="floatingLastname" name='lastname' placeholder="Last name" required>
+        <label for="floatingLastname" style="padding-left: 25px;">Last name</label>
       </div>
 
     </div>
 
     <div class="form-floating input">
-      <input type="tel" class="form-control" id="floatingPhonenumber" placeholder="e">
-      <label for="floatingPhonenumber">phone number</label>
+      <input type="tel" class="form-control" id="floatingPhonenumber" name='phonenumber' placeholder="Phone number" required>
+      <label for="floatingPhonenumber">Phone number</label>
     </div>
 
     <div class="form-floating input">
-      <input type="email" class="form-control" id="floatingEmail" placeholder="w">
+      <input type="email" class="form-control" id="floatingEmail" name='email' placeholder="E-mail" required>
       <label for="floatingEmail">E-mail</label>
     </div>
 
     <div class="row">
 
       <div class="form-floating input col-lg-6">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="e">
+        <input type="password" class="form-control" id="floatingPassword" name='password' placeholder="Password" required>
         <label for="floatingPassword" style="padding-left: 25px;">Password</label>
       </div>
 
       <div class="form-floating input col-lg-6">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="e">
+        <input type="password" class="form-control" id="floatingPassword" name='confirmpassword' placeholder="Confirm password" required>
         <label for="floatingPassword" style="padding-left: 25px;">Confirm password</label>
       </div>
 
     </div>
 
-    <div class="checkbox mb-3 text">
+    <div class="checkbox mb-3 text-start">
       <label>
-        <input type="checkbox" value="agreement"> By submitting my information, I acknowledge and accept the terms of Singapore Airlines' Privacy Policy
-        and terms and conditions of the registered customer account.
+        <input type="checkbox" value="agreement"> By submitting my information, I acknowledge and accept the terms of Doge Airlines' 
+        <a href="#">Privacy Policy and terms and conditions</a> of the registered customer account.
       </label>
     </div>
     
 
-    <button class="goldbutton" type="submit">Sign up</button>
+    <button class="button" type="submit">Sign up</button>
 
   </form>
   </div>

@@ -1,0 +1,44 @@
+<%- include('partials/header.ejs') %>
+
+  <div class="usercontainer">
+
+    <div class="tab-list">
+      <ul class="list">
+        <li><button  class="tab"> Account </button></li>
+        <li><button  class="tab"> Change password </button></li>
+        <li><button  class="tab"> Current booking </button></li>
+        <li><button  class="tab"> Passenger detail </button></li>
+        <li><button  class="tab"> DogePoint™ </button></li>
+      </ul>
+    </div>
+
+    <div class="infos ">
+      <div class="info-head">
+        <h6> Account </h6>
+      </div>
+
+      <div class="info">
+
+        <div class="info-left">
+          <h6 class="data"> Name           <%=":" + currentUser.title + currentUser.firstname + " " + currentUser.lastname%>  </h6>
+          <h6 class="data"> Phone number   <%=":" + currentUser.phonenumber %>  </h6>
+          <h6 class="data"> City           <%=": -" %>   </h6>
+          <h6 class="data"> Nation         <%=": -" %>   </h6>
+        </div>
+        <div class="info-right">
+          <h6 class="data"> Rank           <%=": -" %>   </h6>
+          <h6 class="data"> Email          <%=":" + currentUser.email %> </h6>
+          <h6 class="data"> Language       <%=": -" %>   </h6>
+          <h6 class="data"> Time zone      <%=": -" %>   </h6>
+        </div>
+       
+
+      </div>
+    </div>
+
+  </div> 
+
+</div>
+    
+<%- include('partials/footer.ejs') %>
+

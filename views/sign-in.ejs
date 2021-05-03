@@ -1,50 +1,65 @@
-<%- include('partials/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="icon" href="https://www.pngitem.com/pimgs/m/173-1730423_mlg-doge-png-doge-transparent-background-png-download.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <title>Airline</title>
+</head>
 
     <link rel="stylesheet" href="/signform.css">
 
   </head>
 
-  <div class="row position-relative">
+<div class="row position-relative">
 
   <div class="form-container">
-    <form class="from-adj ">
-    
+    <form action='/sign-in' method="POST" class="from-adj">
+      
       <div class="text-center">
-    <a href="/" >
-        <img class="mb-3" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="80" height="80">
-    </a>
-    <h1 class="mb-3 fw-normal text-white">Sign in</h1>
-  </div>
-    <div class="form-floating input">
-      <input type="email" class="form-control " id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating input">
-      <input type="password" class="form-control " id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
+
+        <a href="/" >
+          <img class="mb-3" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="80" height="80">
+        </a>
+        <h1 class="mb-3 fw-normal text-white">Sign in</h1>
+
+      </div>
+
+      <div class="form-floating input">
+        <input type="email" class="form-control " id="floatingInput" name="email" placeholder="name@example.com" required>
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating input">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+        <label for="floatingPassword">Password</label>
+      </div>
 
       <div class="text-start">
         <input type="checkbox"  value="remember-me"> Stay signed in
       </div>
 
-    <div class="text-center">
-      <button type="submit" class="goldbutton">Sign in</button>
-    </div>
-    
-    <a href="#" >
-      <h6> your username and password? </h6>
-    </a>
-    <a href="/sign-up">
-      <h6>Not a DogeAir member?</h6>
-    </a>
-    <!-- <button type="button" class="goldbutton"  onclick="location.href='/sign-up'" >Join DogeAir member</button> -->
+      <div class="text-center">
+        <button type="submit" class="goldbutton" >Sign in</button>
+      </div>
+      
+      <a href="#" >
+        <h6> your username and password? </h6>
+      </a>
+      <a href="/sign-up">
+        <h6>Not a DogeAir member?</h6>
+      </a>
+      <!-- <button type="button" class="goldbutton"  onclick="location.href='/sign-up'" >Join DogeAir member</button> -->
 
-  </form>
-</div>
+    </form>
+  </div>
 
-<div class="image">
-  <img src="http://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" class="half">
-</div>
+  <div class="image">
+    <img src="http://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" class="half">
+  </div>
 
 </div>
