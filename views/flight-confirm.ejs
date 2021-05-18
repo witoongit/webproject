@@ -1,0 +1,69 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/nav.ejs') %>
+
+    <div class="split">
+        <div>
+            <div class="box">
+
+                <div class="split">
+
+                    <div>
+                        <h4>Flight from <%= flights.from %> to <%= flights.to %></h4>
+                        <h5>Date of departure:<%= bookinfo.departDate %></h5>
+                        <h6><%= bookinfo.seat %> seat</h6>
+                    </div>
+
+                    <div class="text-end">
+                        <button class="mybtn" onclick="goBack()" >Change</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="box">
+                <h4>Flight detail</h4>
+
+                <div class="split">
+
+
+                    <div class="list-detail">
+                        <img src="" alt="Airline icon">
+                        <div><%= flights.airlineName %></div>
+                    </div>
+
+                    <div class="list-detail">
+                        <div><%= flights.departTime %></div>
+                        <div><%= flights.from %></div>
+                    </div>
+
+                    <div class="text-center list-detail"><i class="fas fa-arrow-right"></i></div>
+
+                    <div class="list-detail">
+                        <div><%= flights.arriveTime%></div>
+                        <div><%= flights.to %></div>
+                    </div>
+                    
+                </div>
+                  
+            </div>
+        </div>
+        <div>
+            <div class="box">
+                <h4>Flight cost detail</h4>
+
+                <h5>฿ <%= flights.flightCost %> x <%= bookinfo.seat %> seat</h5>
+                
+                <h6>Total cost = ฿ <%= flights.flightCost * parseInt(bookinfo.seat) %></h6>
+
+            </div>
+            <div>
+                <form class="text-center" action='/flight/<%= flights._id %>/booking' method="POST">
+                <textarea class="hidden" name=departDate><%= bookinfo.departDate %></textarea>
+                <textarea class="hidden" name=seat><%= bookinfo.seat %></textarea>    
+                <button type="submit" class="mybtn" value="<%= flights._id %>" name="flightid"> Confirm Booking </button>
+                </form>
+            </div>
+        </div>
+    </div>
+<%- include('partials/footer.ejs') %>
+

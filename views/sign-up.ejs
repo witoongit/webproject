@@ -1,88 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/header.css">
-    <link rel="icon" href="https://www.pngitem.com/pimgs/m/173-1730423_mlg-doge-png-doge-transparent-background-png-download.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <title>Airline</title>
-</head>
+<%- include('partials/header.ejs') %>
 
-<link rel="stylesheet" href="/signform.css">
-
-
-<div class="row text-center position-relative">
+<div class="signform-container">
 
   <div class="form-container">
-  <form action='/sign-up' method="POST" class="from-adj" >
 
-    <a href="/">
-      <img class="mb-4" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="80" height="80">
-    </a>
+    <form action='/sign-up' method="POST" class="from-adj" >
 
-    <h1 class="h3 mb-3 fw-normal text-white">Please sign up</h1>
+      <div class="text-center">
 
-    <div class="form-floating input">
-      <input type="text" class="form-control" id="floatingTitle" name='title' placeholder="Title" required>
-      <label for="floatingTitle">Title</label>
-    </div>
-
-    <div class="row">
-
-      <div class="form-floating input col-lg-6">
-        <input type="text" class="form-control" id="floatingFirstname" name='firstname' placeholder="First name" required>
-        <label for="floatingFirstname" style="padding-left: 25px;">First name</label>
+        <a href="/">
+          <img class="mb-4" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="80" height="80">
+        </a>
+        <h1 class="h3 mb-3 fw-normal text-white">Please sign up</h1>
+  
       </div>
 
-      <div class="form-floating input col-lg-6">
-        <input type="text" class="form-control" id="floatingLastname" name='lastname' placeholder="Last name" required>
-        <label for="floatingLastname" style="padding-left: 25px;">Last name</label>
+      <!-- 
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div> --> 
+
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingTitle" name='title' placeholder="Title" required>
+        <label for="floatingTitle">Title</label>
       </div>
 
-    </div>
+      <div class="split">
 
-    <div class="form-floating input">
-      <input type="tel" class="form-control" id="floatingPhonenumber" name='phonenumber' placeholder="Phone number" required>
-      <label for="floatingPhonenumber">Phone number</label>
-    </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingFirstname" name='firstname' placeholder="First name" required>
+          <label for="floatingFirstname" >First name</label>
+        </div>
 
-    <div class="form-floating input">
-      <input type="email" class="form-control" id="floatingEmail" name='email' placeholder="E-mail" required>
-      <label for="floatingEmail">E-mail</label>
-    </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingLastname" name='lastname' placeholder="Last name" required>
+          <label for="floatingLastname" >Last name</label>
+        </div>
 
-    <div class="row">
-
-      <div class="form-floating input col-lg-6">
-        <input type="password" class="form-control" id="floatingPassword" name='password' placeholder="Password" required>
-        <label for="floatingPassword" style="padding-left: 25px;">Password</label>
       </div>
 
-      <div class="form-floating input col-lg-6">
-        <input type="password" class="form-control" id="floatingPassword" name='confirmpassword' placeholder="Confirm password" required>
-        <label for="floatingPassword" style="padding-left: 25px;">Confirm password</label>
+      <div class="form-floating">
+        <input type="tel" class="form-control" id="floatingPhonenumber" name='phonenumber' placeholder="Phone number" required>
+        <label for="floatingPhonenumber">Phone number</label>
       </div>
 
-    </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingEmail" name='email' placeholder="E-mail" required>
+        <label for="floatingEmail">E-mail</label>
+      </div>
 
-    <div class="checkbox mb-3 text-start">
-      <label>
-        <input type="checkbox" value="agreement"> By submitting my information, I acknowledge and accept the terms of Doge Airlines' 
-        <a href="#">Privacy Policy and terms and conditions</a> of the registered customer account.
-      </label>
-    </div>
-    
+      <div class="split">
 
-    <button class="button" type="submit">Sign up</button>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" name='password' placeholder="Password" required>
+          <label for="floatingPassword">Password</label>
+        </div>
 
-  </form>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" name='confirmpassword' placeholder="Confirm password" required>
+          <label for="floatingPassword">Confirm password</label>
+        </div>
+
+      </div>
+
+      <div class="checkbox mb-3 text-start text-white">
+        <label>
+          <input type="checkbox" value="agreement" required> By submitting my information, I acknowledge and accept the terms of Doge Airlines' 
+          <a href="#">Privacy Policy and terms and conditions</a> of the registered customer account.
+        </label>
+      </div>
+      
+
+      <div class="text-center">
+        <button class="mybtn" type="submit">Sign up</button>
+      </div>
+      <!-- 
+      <a href="/sign-in">
+        <h6>Already have an account?</h6>
+      </a> -->
+
+    </form>
+
   </div>
 
-  <div class="image">
-    <img src="https://img.freepik.com/free-photo/fantasy-sky_90839-278.jpg?size=626&ext=jpg" class="half">
+  <!-- End of fromcontainer -->
+
+  <div class="image-container">
+
+    <img src="https://img.freepik.com/free-photo/fantasy-sky_90839-278.jpg?size=626&ext=jpg" class="fullimage">
+
   </div>
 
 </div>

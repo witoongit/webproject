@@ -1,0 +1,50 @@
+.mybtn{
+    background-color: rgb(255, 204, 38);
+    border: solid gray 1px;
+    border-radius: 5px;
+    margin: 1em;
+    padding: 8px 25px 8px 25px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    width: 100%;
+  }
+.table{
+    border: solid black 5px;
+    border-collapse: collapse;
+  }  
+
+  td{
+      border: blue solid ;
+      border-width:3px
+  }
+
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+
+  .d-flex{
+      gap: 1rem;
+  }
+
+
+.grid{
+  display: grid;
+
+}
+
+.hidden{
+  display: none;
+}
+
+.notactive{
+  opacity: 0.5;
+}
+  /* body {
+    font-family: 'Noto Sans JP', sans-serif ;
+  } */
+
+  /* Search */
+

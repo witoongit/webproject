@@ -1,6 +1,5 @@
 
 .navadj {
-
     display: inline-block;
     text-align: center;
     margin: 5px;
@@ -17,23 +16,8 @@
     color: rgb(255, 255, 255);
     background-color: goldenrod;
     border-radius: 2px ;
-    /* text-decoration: underline; */
-    /* transition: 0.35s; */
 }
-
-.navact {
-    color: rgb(255, 255, 255);
-    background-color: goldenrod;
-    border-radius: 2px ;
-    text-decoration: none;
-}
-
 
 .banner {
     width: 100%;
-}
-
-.button{
-    padding: 2.5px 10px 2.5px 10px ;
-    background-color: rgb(255, 187, 0);
 }

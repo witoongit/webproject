@@ -1,10 +1,22 @@
 .info-head, .info {
     border: solid 2px gray;
     margin: 20px;
-
+    display: flex;
     padding: 15px;
+}
 
+.info#password{
+    display: block;
+}
 
+.pass-con{
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.info#booking-list{
+    display: block;
+    border: solid 2px gray;
 }
 
 .list {
@@ -27,7 +39,7 @@
 .info {
     display: flex;
     margin-top: 0;
-    border-top: none;
+    border-collapse: collapse;
 }
 
 .info-head{
@@ -58,7 +70,28 @@
     margin-bottom: 10px;
 }
 
+.title{
+    margin: 0;
+    padding: 0;
+
+}
+
+.titlename{
+    width: 50%;
+    padding: 5px;
+}
+
+.titlebtn{
+    width: 50%;
+    text-align: end;
+}
+
 .data{
     padding: 5px 0 5px 2.5px;
     margin-bottom: 10px;
+}
+
+.left, .middle, .right{
+    width: 33.33%;
+    text-align: center;
 }

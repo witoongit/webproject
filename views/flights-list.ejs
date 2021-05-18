@@ -1,83 +1,44 @@
 <%- include('partials/header.ejs') %>
-
-
-    <link rel="stylesheet" href="/flights-list.css">
-
-  <!-- <nav class="p-3 bg-dark text-white">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      
-  
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" class="nav-link px-2 navdec navadj">Home</a></li>
-          <li><a href="/flights" class="nav-link px-2 navact navadj">Flights</a></li>
-          <li><a href="#" class="nav-link px-2 navdec navadj">Hotels</a></li>
-          <li><a href="/sign-in" class="nav-link px-2 navdec navadj">DogePoint™</a></li>
-          <li><a href="/sign-in" class="nav-link px-2 navdec navadj">Current Booking</a></li>
-        </ul>
-  
-     
-        <div class="text-end">
-          <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Login</button>
-          <button type="button"  onclick="location.href='/sign-up'" class="btn btn-warning">Sign-up</button>
-        </div>
-      </div>
-    </div>
-  </nav> -->
+<%- include('partials/nav.ejs') %>
 
 
   <div  class="result">
-    <h4>Flight result here</h4>
-    <h6>Date of departure</h6>
-
-    <ul>
-        <il>Filter</il>
-        <il type="button" class="button">cost</il>
-        <il type="button" class="button">flight time</il>
-        <il type="button" class="button">stop</il>
-        <il type="button" class="button">airline</il>
-    </ul>
-    
-  </div>
-
-  
-  <div  class="result-list">
-    <h4>Result </h4>
-    <h6>Flight Data</h6>
-  </div>
-
-  <div  class="result-list">
-    <h4>Result </h4>
-    <div class="row">
-      <div class="col">
-      <h6>Flight Data</h6>
-    </div>    
-      <div class="col">
-      <button type="submit" class="button" onclick="location.href='/flight-book'"> Book a fight </button>
-    </div>
-    </div>
-  </div>
-
-  <div  class="result-list">
-    <h4>Result </h4>
-    <h6>Flight Data</h6>
-  </div>
-
-  <div  class="result-list">
-    <h4>Result </h4>
-    <h6>Flight Data</h6>
-  </div>
-  
-  <div  class="result-list">
-    <h4>Result </h4>
-    <h6>Flight Data</h6>
+    <h4>Departures flight <%= searchData.to %> </h4>
+    <h6>Date of depart:<%= searchData.departDate %></h6>
+    <h6>Passenger seat:<%= searchData.seat %></h6>
   </div>
 
 
+  <% flights.forEach((flight) => { %>
+    <form class="result-list split" action='/flight/<%= flight._id %>/confirm' method="POST">
 
+      <div class="list-detail">
+        <img src="" alt="Airline icon">
+        <div><%= flight.airlineName %></div>
+      </div>
 
-
+      <div class="list-detail">
+        <div><%= flight.departTime %></div>
+        <div><%= flight.from %></div>
+      </div>
+      <div class="list-detail"><i class="fas fa-arrow-right"></i></div>
+      <div class="list-detail">
+        <div><%= flight.arriveTime%></div>
+        <div><%= flight.to %></div>
+      </div>
+      <!-- <div class="list-detail">Total time</div>
+      <div class="list-detail">Bag Weight</div> -->
+      <div class="list-detail">฿<%= flight.flightCost %> / person</div>
+      <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
+      <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
       
+      <button type="submit" class="mybtn" value="<%= flight._id %>" name = "flightid"> Book a fight </button>
+      <!-- <div class="list-detail">Drop down more detail</div> -->
+    </form>
+   <% }) %>  
+
+
+ 
     
 <%- include('partials/footer.ejs') %>
 

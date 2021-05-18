@@ -1,0 +1,16 @@
+
+
+.search {
+	margin-bottom: 30px;
+}
+
+
+[data-filter-item] {
+	padding: 15px;
+	background-color: #ccc;
+	border: 1px solid #fff;
+}
+
+.hidden {
+	display: none;
+}

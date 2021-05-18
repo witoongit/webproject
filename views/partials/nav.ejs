@@ -1,0 +1,32 @@
+
+    <nav class="p-3 bg-dark text-white">
+
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          
+      
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="/" class="nav-link px-2 navdec navadj">Home</a></li>
+              <li><a href="/flights" class="nav-link px-2 navdec navadj">Flights</a></li>
+              <!-- <li><a href="#" class="nav-link px-2 navdec navadj">Hotels</a></li> -->
+              <li><a href="/user" class="nav-link px-2 navdec navadj">DogePoint™</a></li>
+              <li><a href="/user" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+            </ul>
+      
+            <% if(!currentUser) { %>
+            <div class="text-end">
+              <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Login</button>
+              <button type="button"  onclick="location.href='/sign-up'" class="btn btn-warning">Sign-up</button>
+            </div>
+            <% } else { %>
+            <div class="text-end">
+              <a href="/user" class="nav-linx px-2 navdec navadj"> <i class="far fa-user"></i> <%= currentUser.firstname%> </a>
+              <button type="button" onclick="location.href='/sign-out'" class="btn btn-outline-light me-2 navadj">Log Out</button>
+            </div>
+            <% } %>
+            
+    
+          </div>
+        </div>
+        
+      </nav>

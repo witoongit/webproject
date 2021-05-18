@@ -4,11 +4,8 @@ footer {
     background-color: rgb(31, 31, 31);
     color: goldenrod;
     text-align: start;
-    font-size: 25px;
-    margin: 5vw 0 0 0;
-    left: 0;
-    bottom: 0;
-    /* position: fixed; */
+    font-size: 2rem;
+
   }
 
 .footer-text {

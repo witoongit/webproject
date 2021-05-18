@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/header.css">
-    <link rel="icon" href="https://www.pngitem.com/pimgs/m/173-1730423_mlg-doge-png-doge-transparent-background-png-download.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <title>Airline</title>
-</head>
+<%- include('partials/header.ejs') %>
 
-    <link rel="stylesheet" href="/signform.css">
-
-  </head>
-
-<div class="row position-relative">
+<div class="signform-container">
 
   <div class="form-container">
     <form action='/sign-in' method="POST" class="from-adj">
@@ -39,12 +24,13 @@
         <label for="floatingPassword">Password</label>
       </div>
 
-      <div class="text-start">
+
+      <div class="text-white">
         <input type="checkbox"  value="remember-me"> Stay signed in
       </div>
 
       <div class="text-center">
-        <button type="submit" class="goldbutton" >Sign in</button>
+        <button type="submit" class="mybtn" >Sign in</button>
       </div>
       
       <a href="#" >
@@ -58,8 +44,8 @@
     </form>
   </div>
 
-  <div class="image">
-    <img src="http://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" class="half">
+  <div class="image-container">
+    <img src="http://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" class="fullimage">
   </div>
 
 </div>
