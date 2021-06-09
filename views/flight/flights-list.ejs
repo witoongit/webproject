@@ -1,0 +1,44 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+
+  <div  class="result">
+    <h4>Departures flight <%= searchData.to %> </h4>
+    <h6>Date of depart:<%= searchData.departDate %></h6>
+    <h6>Passenger seat:<%= searchData.seat %></h6>
+  </div>
+
+
+  <% flights.forEach((flight) => { %>
+    <form class="result-list split" action='/flight/<%= flight._id %>/confirm' method="POST">
+
+      <div class="list-detail">
+        <img src="<%= flight.airlineName.icon %>" alt="Airline icon" width="60" height="60">
+        <div><%= flight.airlineName.name %></div>
+      </div>
+
+      <div class="list-detail">
+        <div><%= flight.departTime %></div>
+        <div><%= flight.from.city %></div>
+      </div>
+      <div class="list-detail"><i class="fas fa-arrow-right"></i></div>
+      <div class="list-detail">
+        <div><%= flight.arriveTime%></div>
+        <div><%= flight.to.city %></div>
+      </div>
+      <!-- <div class="list-detail">Total time</div>
+      <div class="list-detail">Bag Weight</div> -->
+      <div class="list-detail">฿<%= flight.flightCost %> / person</div>
+      <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
+      <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+      
+      <button type="submit" class="mybtn" value="<%= flight._id %>" name = "flightid"> Book a fight </button>
+      <!-- <div class="list-detail">Drop down more detail</div> -->
+    </form>
+   <% }) %>  
+
+
+ 
+    
+<%- include('../partials/footer.ejs') %>
+

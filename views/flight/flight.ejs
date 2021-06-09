@@ -1,0 +1,73 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+
+<div class="position-relative">
+    <img src="https://wallpaperaccess.com/full/2692164.jpg" class="banner">
+    <div class="position-absolute top-0 start-0 searchbox">
+
+        <button class="flight-tab" >One way</button>
+        <button class="flight-tab notactive">Roundtrip</button>
+
+        <form class="" action='/flight/search' method="POST">
+            
+            
+            <div class=" input">
+                <label for="airportfrom" class="form-label">From</label>
+                <select class="form-select" list="airports" name="from" id="airportfrom" placeholder="Ex.Thailand">>
+                    <% airports.forEach((airport)=> { %>
+                        <option value="<%= airport._id %>"> <%= airport.city %> </option>
+                            <% }) %>
+                </select>
+            </div>
+
+            <div class="input">
+                <label for="airportto" class="form-label">To</label>
+                <select class="form-select" list="airports" name="to" id="airport" placeholder="Ex.Thailand">>
+                    <% airports.forEach((airport)=> { %>
+                        <option value="<%= airport._id %>"> <%= airport.city %> </option>
+                            <% }) %>
+                </select>
+            </div>
+
+            <div class="split">
+                <div class="form-floating input">
+                    <input type="date" min="" class="form-control"  id="departDate" name="departDate" placeholder=""  required>
+                    <label for="floatingLastname">Depart date</label>
+                </div>
+
+                <div class="form-floating input ">
+                    <input type="date" class="form-control active-toggle" id="returnDate" name="returnDate" placeholder=""  Disabled>
+                    <label for="returnDate">Return date</label>
+                </div>
+            </div>
+
+            <!-- <div class="split">
+                <div class="form-floating input">
+                    <input type="text" class="form-control" id="floatingLastname" name="flightclass" placeholder="">
+                    <label for="floatingLastname">Class</label>
+                </div>
+
+                <div class="form-floating input">
+                    <input type="text" class="form-control" id="floatingLastname" placeholder="">
+                    <label for="floatingLastname">Stops</label>
+                </div>
+            </div> -->
+
+            <div class="form-floating input">
+                <input type="number" min="0" max="6" class="form-control" id="floatingLastname" name="seat" placeholder="" required>
+                <label for="floatingLastname">Seat</label>
+            </div>
+
+
+            <button type="submit" class="btn btn-warning text-center searchbutton">Search</button>
+        </form>
+
+    </div>
+    
+    
+</div>
+    
+    
+<%- include('../partials/footer.ejs') %>
+

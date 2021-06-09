@@ -1,24 +1,40 @@
 var mongoose = require('mongoose');
-const booking = require('./booking');
+
 
 
 var flightSchema = new mongoose.Schema({
-    flightID:String,
-    airlineName:String,
-    departTime:String,
-    arriveTime:String,
-    from:String,
-    to:String,
-    flightCost:Number,
-    bookings:{
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Booking'
-            }
-        ], 
-        default: []
-    }
+    flightID: String,
+    airlineName:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Airline'
+    },
+    departTime: String,
+    arriveTime: String,
+    maxseat: Number,
+    from: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Airport'
+    },
+    to: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Airport'
+    },
+    flightCost: Number,
+    flightclass: String,
+    classdetail: {
+        baggage: Number,
+        seatselect: Boolean,
+        entertain: Boolean,
+        meal: Boolean,
+        usb: Boolean
+    },
+    stop: Number,
+    stoplocation: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Airport'
+        }
+    ]
 });
 
 module.exports = mongoose.model('Flight', flightSchema)

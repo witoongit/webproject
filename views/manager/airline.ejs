@@ -1,0 +1,142 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="d-flex" style="height: 100%;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <img class="mb-3 mt-3"
+                    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g"
+                    alt="" width="50" height="50">
+                <span class="fs-5">DogeAir</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/manager" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home" />
+                        </svg>
+                        Flights
+                    </a>
+                </li>
+                <li>
+                    <a href="/manager/airport" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2" />
+                        </svg>
+                        Airports
+                    </a>
+                </li>
+                <li>
+                    <a href="/manager/airline" class="nav-link text-white active" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2" />
+                        </svg>
+                        Airlines
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>
+                        <%= currentUser.firstname %>
+                    </strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/sign-out">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w-100">
+            <section class="container">
+
+                <form class="box" action='/manager/airline-add' method="POST" enctype="multipart/form-data">
+                    <div class=" container">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="exampleFormControlInput1" class="form-label">Airline name</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="airline[name]"
+                                    placeholder="ex. Mekairline">
+                            </div>
+                            <div class="col-6">
+                                <label for="exampleFormControlInput1" class="form-label">Airline Icon</label>
+                                <input type="file" class="form-control" id="exampleFormControlInput1" name="image" accept="image/*"
+                                    placeholder="ex. Thailand">
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary col-2">Add airline</button>
+                        </div>
+                    </div>
+                </form>
+
+            </section>
+
+            <section class="container">
+
+                <div class="split">
+                    <h2>Airlines</h2>
+                    <!-- <form class="mb-3 split" action='/manager/search' method="POST">
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="result"
+                    placeholder="Search">
+                <button class="mybtn" type="submit"> Search <i class="fas fa-search"></i></button>
+            </form> -->
+                </div>
+
+
+                <!-- <form action='/manager/sort' method="POST">
+            <div class="split">
+                <button type="submit" class="mybtn">Cost</button>
+                <button type="submit" class="mybtn">Flight time</button>
+                <button type="submit" class="mybtn">Stop</button>
+                <button type="submit" class="mybtn">Airline</button>
+            </div>
+        </form> -->
+
+
+                <table class="table">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Airline name</th>
+                        <th scope="col">Airline Icon</th>
+                    </tr>
+
+                    <% airlines.forEach((airline, index)=> { %>
+                        <tr>
+                            <th scope="row">
+                                <%= index+1 %>
+                            </th>
+                            <td>
+                                <%= airline.name %>
+                            </td>
+
+                            <td>
+                                <img src="<%= airline.icon %>" width="60" height="60">
+                            </td>
+
+                            <td>
+                                <form action='<%= airline._id %>/airline-edit' method="GET">
+                                    <button type="submit" class="btn-warning">edit</button>
+                                </form>
+                            </td>
+
+                            <td>
+                                <form action='<%= airline._id %>/airline-del?_method=delete' method="POST">
+                                    <button class="btn-danger">delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+
+
+                </table>
+
+            </section>
+        </div>
+    </div>

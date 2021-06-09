@@ -1,37 +1,22 @@
 var mongoose = require('mongoose');
-    User     = require('./models/user');
-    Flight   = require('./models/flight');
+    // User     = require('./models/user');
+    // Flight   = require('./models/flight');
+    Country  = require('./models/flight');
 
-var userData = [
+var countryData = [
     {
-    username: "witoonaoo@gmail.com",
-    title:"Chad.",
-    firstname: "witoon",
-    lastname: "theadmin",
-    phonenumber: "",
-    email: "witoonaoo@gmail.com",
-    password: "123",
-    tier: "Admin"
+        country: "Thailand",
+        town: "Bangkok"
     },
 
     {
-        username: "test@test.test",
-        title:"Chad.",
-        firstname: "test",
-        lastname: "test",
-        phonenumber: "",
-        email: "test@test.test",
-        password: "123",
-        tier: "Admin"
+        country: "Japan",
+        town: "Tokyo"
     }
 ]
 
-var flightData = [
-
-]
-
 function seedDB() {
-    User.remove({tier:"Admin"}, function(err, removed) {
+    Country.deleteMany({}, function(err, removed) {
         if(err){
             console.log(err)
         }
@@ -39,8 +24,8 @@ function seedDB() {
         console.log(removed)
         console.log("have been remove")
         
-        userData.forEach(function(seed) {
-            User.create(seed, function(err, user){
+        countryData.forEach(function(seed) {
+            Country.create(seed, function(err, user){
                 if(err){
                     console.log(err)
                 }

@@ -1,0 +1,325 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="d-flex" style="height: 100%;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <img class="mb-3 mt-3"
+                    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g"
+                    alt="" width="50" height="50">
+                <span class="fs-5">DogeAir</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/manager" class="nav-link text-white active">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home" />
+                        </svg>
+                        Flights
+                    </a>
+                </li>
+                <li>
+                    <a href="/manager/airport" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2" />
+                        </svg>
+                        Airports
+                    </a>
+                </li>
+                <li>
+                    <a href="/manager/airline" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2" />
+                        </svg>
+                        Airlines
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>
+                        <%= currentUser.firstname %>
+                    </strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/sign-out">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w-100">
+            <section class="container">
+
+                <form class="box d-flex flex-" action='/manager/flight-add' method="POST">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Flight ID</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="flightID"
+                                    placeholder="XX-XXX">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="airline" class="form-label fw-bold">Airline</label>
+                                <select class="form-select" list="airlines" name="airlineName" id="airline"
+                                    placeholder="Ex.mekAir">
+                                    <% airlines.forEach((airline)=> { %>
+                                        <option value="<%= airline._id %>">
+                                            <%= airline.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Depart time</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="departTime"
+                                    placeholder="Depart Time">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Arrive time</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="arriveTime"
+                                    placeholder="arriveTime">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">max seat</label>
+                                <input type="number" min="15" max="40" class="form-control"
+                                    id="exampleFormControlInput1" name="maxseat" placeholder="15-40">
+                            </div>
+
+
+                            <div class="mb-3 col-md-3">
+                                <label for="airport" class="form-label fw-bold">from</label>
+                                <select class="form-select" list="airports" name="from" id="airport"
+                                    placeholder="Ex.Thailand">>
+                                    <% airports.forEach((airport)=> { %>
+                                        <option value="<%= airport._id %>">
+                                            <%= airport.city %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+
+                            <div class="mb-3 col-md-3">
+                                <label for="airport" class="form-label fw-bold">to</label>
+                                <select class="form-select" list="airports" name="to" id="airport"
+                                    placeholder="Ex.Tokyo">
+                                    <% airports.forEach((airport)=> { %>
+                                        <option value="<%= airport._id %>">
+                                            <%= airport.city %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Flight cost</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="flightCost"
+                                    placeholder="Flight cost">
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-2">
+                                <strong> Flight Class </strong>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="economy" name="flightclass"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Economy
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="business" name="flightclass"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Buisness
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="first-class" name="flightclass"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        First-Class
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">baggage</label>
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="exampleFormControlInput1" name="baggage" placeholder="ex. 45">
+                            </div>
+                            <div class="col-md-2">
+                                <strong> Class detial </strong>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" name="seatselect"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        seatselect
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" name="entertain"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        entertain
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" name="meal"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        meal
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" name="usb"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        usb
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-2">
+                                <strong> Stops </strong>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="0" name="stop"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Non-Stop
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="1" name="stop"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        1 Stop
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="2" name="stop"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        2+ Stop
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-outline-primary text-wrap">Add flight</button>
+                            </div>
+                        </div>
+
+
+
+                </form>
+
+            </section>
+
+            <section class="container">
+
+                <div class="split">
+                    <h2>Flights</h2>
+                    <form class="mb-3 split" action='/manager/search' method="POST">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="result"
+                            placeholder="Search">
+                        <button class="mybtn" type="submit"> Search <i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+
+                <form action='/manager/sort' method="POST">
+                    <div class="split">
+                        <button type="submit" class="mybtn">Cost</button>
+                        <button type="submit" class="mybtn">Flight time</button>
+                        <button type="submit" class="mybtn">Stop</button>
+                        <button type="submit" class="mybtn">Airline</button>
+                    </div>
+                </form>
+
+
+                <table class="table">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">FlightNumber</th>
+                        <th scope="col">AirlineName</th>
+                        <th scope="col">Depart Time</th>
+                        <th scope="col">Arrive Time</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">FlightCost</th>
+                        <th scope="col">Flight _id</th>
+                    </tr>
+
+                    <% flights.forEach((flight, index)=> { %>
+
+                        <tr>
+                            <th scope="row">
+                                <%= index+1 %>
+                            </th>
+                            <td>
+                                <%= flight.flightID %>
+                            </td>
+                            <td>
+                                <%= flight.airlineName.name %>
+                            </td>
+                            <td>
+                                <%= flight.departTime %>
+                            </td>
+                            <td>
+                                <%= flight.arriveTime %>
+                            </td>
+                            <td>
+                                <%= flight.from.city%>
+                            </td>
+                            <td>
+                                <%= flight.to.city %>
+                            </td>
+                            <td>
+                                ฿ <%= flight.flightCost %>
+                            </td>
+                            <td>
+                                <%= flight._id %>
+                            </td>
+
+                            <td>
+                                <form action='manager/<%= flight._id %>/flight-edit' method="GET">
+                                    <button type="submit" class="btn-warning">edit</button>
+                                </form>
+                            </td>
+
+                            <td>
+                                <form action='manager/<%= flight._id %>?_method=delete' method="POST">
+                                    <button class="btn-danger">delete</button>
+                                </form>
+                            </td>
+
+                        </tr>
+
+                        <% }) %>
+
+
+                </table>
+
+            </section>
+        </div>
+    </div>

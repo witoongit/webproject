@@ -1,0 +1,284 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="d-flex" style="height: 100%;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <img class="mb-3 mt-3"
+                    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g"
+                    alt="" width="50" height="50">
+                <span class="fs-5">DogeAir</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/manager" class="nav-link text-white active">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home" />
+                        </svg>
+                        Flights
+                    </a>
+                </li>
+                <li>
+                    <a href="/manager/airport" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2" />
+                        </svg>
+                        Airports
+                    </a>
+                </li>
+                <li>
+                    <a href="/manager/airline" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2" />
+                        </svg>
+                        Airlines
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>
+                        <%= currentUser.firstname %>
+                    </strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/sign-out">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w-100">
+            <section class="container">
+
+                <form class="box d-flex flex-" action='/manager/<%= flight._id %>/flight-edit?_method=PUT' method="POST">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Flight ID</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="flight[flightID]"
+                                    placeholder="<%= flight.flightID %>" value="<%= flight.flightID %>">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="airline" class="form-label fw-bold">Airline</label>
+                                <select class="form-select" list="airlines" name="flight[airlineName]" id="airline" 
+                                    placeholder="<%= flight.airlineName.name %>" value="<%= flight.airlineName._id %>">
+                                    <option placeholder="<%= flight.airlineName.name %>" value="<%= flight.airlineName._id %>"><%= flight.airlineName.name %></option>
+                                    <% airlines.forEach((airline) => { %>
+                                        <option value="<%= airline._id %>"> <%= airline.name %> </option>
+                                            <% }) %>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Depart time</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="flight[departTime]"
+                                placeholder="<%= flight.departTime %>" value="<%= flight.departTime %>">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Arrive time</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="flight[arriveTime]"
+                                placeholder="<%= flight.arriveTime %>" value="<%= flight.arriveTime %>">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">max seat</label>
+                                <input type="number" min="15" max="40" class="form-control" id="exampleFormControlInput1" name="flight[maxseat]" 
+                                    placeholder="<%= flight.maxseat %>" value="<%= flight.maxseat%>">
+                            </div>
+
+
+                            <div class="mb-3 col-md-3">
+                                <label for="airport" class="form-label fw-bold">from</label>
+                                <select class="form-select" list="airports" name="flight[from]" id="airport" placeholder="Ex.Thailand">
+                                    <option placeholder="<%= flight.from.city %>" value="<%= flight.from._id %>"><%= flight.from.city %></option>
+                                    <% airports.forEach((airport)=> { %>
+                                        <option value="<%= airport._id %>"> <%= airport.city %> </option>
+                                            <% }) %>
+                                </select>
+                            </div>
+
+
+                            <div class="mb-3 col-md-3">
+                                <label for="airport" class="form-label fw-bold">to</label>
+                                <select class="form-select" list="airports" name="flight[to]" id="airport" placeholder="Ex.Tokyo">
+                                    <option placeholder="<%= flight.to.city %>" value="<%= flight.to._id %>"><%= flight.to.city %></option>
+                                    <% airports.forEach((airport)=> { %>
+                                        <option value="<%= airport._id %>"> <%= airport.city %> </option>
+                                            <% }) %>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Flight cost</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="flight[flightCost]"
+                                placeholder="<%= flight.flightCost %>" value="<%= flight.flightCost%>">
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-2">
+                                <strong> Flight Class </strong>
+                                <div class="form-check">
+                                    <% if( flight.flightclass === "economy") { %>
+                                    <input class="form-check-input" type="radio" value="economy" name="flight[flightclass]"
+                                        id="flexRadioDefault2"  checked>
+                                    <% } else { %>
+                                    <input class="form-check-input" type="radio" value="economy" name="flight[flightclass]"
+                                        id="flexRadioDefault2">
+                                    <% } %>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Economy
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <% if( flight.flightclass === "buisness") { %>
+                                    <input class="form-check-input" type="radio" value="business" name="flight[flightclass]"
+                                        id="flexRadioDefault1" checked>
+                                    <% } else { %>
+                                    <input class="form-check-input" type="radio" value="business" name="flight[flightclass]"
+                                        id="flexRadioDefault1">
+                                    <% } %>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Business
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <% if( flight.flightclass === "buisness") { %>
+                                    <input class="form-check-input" type="radio" value="first-class" name="flight[flightclass]"
+                                        id="flexRadioDefault1" checked>
+                                    <% } else { %>
+                                    <input class="form-check-input" type="radio" value="first-class" name="flight[flightclass]"
+                                        id="flexRadioDefault1">
+                                    <% } %>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        First-Class
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">baggage</label>
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="exampleFormControlInput1" name="flight[baggage]" placeholder="<%= flight.classdetail.baggage %>" value="<%= flight.classdetail.baggage %>">
+                            </div>
+                            <div class="col-md-2">
+                                <strong> Class detial </strong>
+                                <div class="form-check">
+                                    <% if( flight.classdetail.seatselect === true) { %>
+                                    <input class="form-check-input" type="checkbox" value="true" name="flight[seatselect]"
+                                        id="flexCheckDefault" checked>
+                                    <% } else { %>
+                                        <input class="form-check-input" type="checkbox" value="true" name="flight[seatselect]"
+                                        id="flexCheckDefault" >
+                                    <% } %>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        seatselect
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <% if( flight.classdetail.entertain === true) { %>
+                                    <input class="form-check-input" type="checkbox" value="true" name="flight[entertain]"
+                                        id="flexCheckDefault" checked>
+                                    <% } else { %>
+                                        <input class="form-check-input" type="checkbox" value="true" name="flight[entertain]"
+                                        id="flexCheckDefault" >
+                                    <% } %>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        entertain
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <% if( flight.classdetail.meal === true) { %>
+                                    <input class="form-check-input" type="checkbox" value="true" name="flight[meal]"
+                                        id="flexCheckDefault" checked>
+                                    <% } else { %>
+                                    <input class="form-check-input" type="checkbox" value="true" name="flight[meal]"
+                                        id="flexCheckDefault" >
+                                    <% } %>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        meal
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <% if( flight.classdetail.usb === true) { %>
+                                    <input class="form-check-input" type="checkbox" value="true" name="flight[usb]"
+                                        id="flexCheckDefault" checked> 
+                                    <% } else { %>
+                                    <input class="form-check-input" type="checkbox" value="true" name="flight[usb]"
+                                        id="flexCheckDefault"> 
+                                    <% } %>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        usb
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-2">
+                                <strong> Stops </strong>
+                                <div class="form-check">
+                                    <% if( flight.stop === 0) { %>
+                                    <input class="form-check-input" type="radio" value="0" name="flight[stop]"
+                                        id="flexRadioDefault2" checked>
+                                    <% } else { %>
+                                    <input class="form-check-input" type="radio" value="0" name="flight[stop]"
+                                        id="flexRadioDefault2">
+                                    <% } %>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Non-Stop
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <% if( flight.stop === 1) { %>
+                                    <input class="form-check-input" type="radio" value="1" name="flight[stop]"
+                                        id="flexRadioDefault1" checked>
+                                    <% } else { %>
+                                    <input class="form-check-input" type="radio" value="1" name="flight[stop]"
+                                        id="flexRadioDefault1">    
+                                    <% } %>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        1 Stop
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <% if( flight.stop === 2) { %>
+                                    <input class="form-check-input" type="radio" value="2" name="flight[stop]"
+                                        id="flexRadioDefault1" checked>
+                                    <% } else { %>
+                                    <input class="form-check-input" type="radio" value="2" name="flight[stop]"
+                                        id="flexRadioDefault1">   
+                                    <% } %>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        2+ Stop
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-outline-primary text-wrap">Update flight</button>
+                            </div>
+                        </div>
+
+
+
+                </form>
+
+            </section>
+
+        </div>
+    </div>

@@ -25,6 +25,7 @@ router.post('/sign-up', function(req,res){
     // Check if password match or not if not sent back to register page
     if(password !== confirmpassword){
         console.log("password not match")
+        req.flash('error', 'password not match with confirm password.')
         return res.redirect('/sign-up');
     }
 
@@ -32,9 +33,11 @@ router.post('/sign-up', function(req,res){
     User.register(newUser, req.body.password, function(err, user) {
         if(err){
             console.log(err);
+            req.flash('error', 'This email has already been registed')
             return res.redirect('/sign-up');
         }
         passport.authenticate('local')(req, res, function(){
+            req.flash('success', 'Welcome to DogeAir!' + user.firstname)
             res.redirect('/')
         });
     });  
@@ -48,12 +51,18 @@ router.post('/sign-in',
 
 passport.authenticate('local',
     {
+        successFlash: true,
+        failureFlash: true,
+        // successFlash: 'Successfully log in',
+        failureFlash: 'Invalid username or password',
         failureRedirect: '/sign-in'
     }),function(req,res){
         if(req.user.tier === "Admin"){
+            // req.flash('success', 'Welcome Admin ' + req.user.firstname)
             res.redirect('/manager');
         }
         else {
+            // req.flash('success', 'Welcome to DogeAir! ' + req.user.firstname)
             res.redirect('/');
         }
     }
@@ -61,6 +70,7 @@ passport.authenticate('local',
 
 router.get('/sign-out', function(req, res){
     req.logout();
+    // req.flash('success', 'You have successfully log out')
     res.redirect('/');
 });
 
@@ -72,6 +82,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash('error', 'You need to sign in frist.')
     res.redirect('/sign-in');
 }
 
