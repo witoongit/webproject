@@ -22,15 +22,16 @@ var bookingSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Contact'
     },
-    travellers:[
+    travelers:[
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Traveller'
+                ref: 'Traveler'
         }
     ],
+
     paymentstatus:{
         type:String,
-        defult: "Waiting for payment"
+        default: "Waiting for payment"
     }
 
 });

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 
-var travellerSchema = new mongoose.Schema({
+var travelerSchema = new mongoose.Schema({
     title:String,
     firstname: String,
     lastname: String,
@@ -12,5 +12,5 @@ var travellerSchema = new mongoose.Schema({
     
 });
 
-module.exports = mongoose.model('Traveller', travellerSchema)
+module.exports = mongoose.model('Traveler', travelerSchema)
 

@@ -59,7 +59,7 @@ passport.authenticate('local',
     }),function(req,res){
         if(req.user.tier === "Admin"){
             // req.flash('success', 'Welcome Admin ' + req.user.firstname)
-            res.redirect('/manager');
+            res.redirect('/manager/flight');
         }
         else {
             // req.flash('success', 'Welcome to DogeAir! ' + req.user.firstname)

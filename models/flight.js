@@ -10,6 +10,7 @@ var flightSchema = new mongoose.Schema({
     },
     departTime: String,
     arriveTime: String,
+    totalTime: Number,
     maxseat: Number,
     from: {
         type: mongoose.Schema.Types.ObjectId,
@@ -23,10 +24,10 @@ var flightSchema = new mongoose.Schema({
     flightclass: String,
     classdetail: {
         baggage: Number,
-        seatselect: Boolean,
-        entertain: Boolean,
-        meal: Boolean,
-        usb: Boolean
+        entertain: { type: Boolean, default: false},
+        meal: { type: Boolean, default: false},
+        wifi: { type: Boolean, default: false},
+        usb: { type: Boolean, default: false}
     },
     stop: Number,
     stoplocation: [

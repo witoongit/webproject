@@ -11,7 +11,7 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="/manager" class="nav-link text-white active">
+                    <a href="/manager/flight" class="nav-link text-white active">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#home" />
                         </svg>
@@ -177,19 +177,7 @@
                             </div>
                             <div class="col-md-2">
                                 <strong> Class detial </strong>
-                                <div class="form-check">
-                                    <% if( flight.classdetail.seatselect === true) { %>
-                                    <input class="form-check-input" type="checkbox" value="true" name="flight[seatselect]"
-                                        id="flexCheckDefault" checked>
-                                    <% } else { %>
-                                        <input class="form-check-input" type="checkbox" value="true" name="flight[seatselect]"
-                                        id="flexCheckDefault" >
-                                    <% } %>
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        seatselect
-                                    </label>
-                                </div>
-
+    
                                 <div class="form-check">
                                     <% if( flight.classdetail.entertain === true) { %>
                                     <input class="form-check-input" type="checkbox" value="true" name="flight[entertain]"
@@ -213,6 +201,19 @@
                                     <% } %>
                                     <label class="form-check-label" for="flexCheckDefault">
                                         meal
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <% if( flight.classdetail.wifi === true) { %>
+                                    <input class="form-check-input" type="checkbox" value="true" name="flight[wifi]"
+                                        id="flexCheckDefault" checked>
+                                    <% } else { %>
+                                        <input class="form-check-input" type="checkbox" value="true" name="flight[wifi]"
+                                        id="flexCheckDefault" >
+                                    <% } %>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        wifi
                                     </label>
                                 </div>
 

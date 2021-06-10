@@ -11,7 +11,7 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="/manager" class="nav-link text-white active">
+                    <a href="/manager/flight" class="nav-link text-white active">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#home" />
                         </svg>
@@ -78,15 +78,20 @@
                                         <% }) %>
                                 </select>
                             </div>
-                            <div class="mb-3 col-md-3">
+                            <div class="mb-3 col-md-2">
                                 <label for="exampleFormControlInput1" class="form-label fw-bold">Depart time</label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1" name="departTime"
                                     placeholder="Depart Time">
                             </div>
-                            <div class="mb-3 col-md-3">
+                            <div class="mb-3 col-md-2">
                                 <label for="exampleFormControlInput1" class="form-label fw-bold">Arrive time</label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1" name="arriveTime"
                                     placeholder="arriveTime">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <label for="exampleFormControlInput1" class="form-label fw-bold">Estimate flight time</label>
+                                <input type="number" min="0" class="form-control" id="exampleFormControlInput1" name="totalTime"
+                                    placeholder="totalTime">
                             </div>
 
                         </div>
@@ -167,13 +172,6 @@
                             </div>
                             <div class="col-md-2">
                                 <strong> Class detial </strong>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="true" name="seatselect"
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        seatselect
-                                    </label>
-                                </div>
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="true" name="entertain"
@@ -188,6 +186,14 @@
                                         id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault">
                                         meal
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" name="wifi"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        wifi
                                     </label>
                                 </div>
 
@@ -236,25 +242,48 @@
             </section>
 
             <section class="container">
+                <div class="container">
+                    <div class="row align-items-center">
 
-                <div class="split">
-                    <h2>Flights</h2>
-                    <form class="mb-3 split" action='/manager/search' method="POST">
-                        <input type="text" class="form-control" id="exampleFormControlInput1" name="result"
-                            placeholder="Search">
-                        <button class="mybtn" type="submit"> Search <i class="fas fa-search"></i></button>
-                    </form>
-                </div>
+                        <h2 class="col-2">Flights</h2>
 
+                        <form class="mb-3 ms-auto col-3 d-flex" action='/manager/search' method="POST">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="result" 
+                                placeholder="Search by airline name ">
+                            <button class="mybtn" type="submit" name="by" value="by_airline"> Search <i class="fas fa-search"></i></button>
+                        </form>
 
-                <form action='/manager/sort' method="POST">
-                    <div class="split">
-                        <button type="submit" class="mybtn">Cost</button>
-                        <button type="submit" class="mybtn">Flight time</button>
-                        <button type="submit" class="mybtn">Stop</button>
-                        <button type="submit" class="mybtn">Airline</button>
+                        <form class="mb-3 ms-auto col-3 d-flex" action='/manager/search' method="POST">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="result" 
+                                placeholder="Search by city name">
+                            <button class="mybtn" type="submit" name="by" value="by_city"> Search<i class="fas fa-search"></i></button>
+                        </form>
+
+                        <div class="mb-3 col-3" >
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-bs-toggle="dropdown" aria-expanded="false" >
+                                    Sort 
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <form action='/manager/sort' method="POST">
+                                        <li><button class="dropdown-item" type="submit" value="cost_low" name="sort_type">Cost (Lowest)</button></li>
+                                    </form>
+                                    <form action='/manager/sort' method="POST">
+                                        <li><button class="dropdown-item" type="submit" value="cost_high" name="sort_type">Cost (Highest)</button></li>
+                                    </form>
+                                    <form action='/manager/sort' method="POST">
+                                        <li><button class="dropdown-item" type="submit" value="flight_low" name="sort_type">Flight time (Shotest) </button></li>
+                                    </form>
+                                    <form action='/manager/sort' method="POST">
+                                        <li><button class="dropdown-item" type="submit" value="flight_high" name="sort_type">Flight time (Longest) </button></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </div>
+                        
                     </div>
-                </form>
+                </div>
 
 
                 <table class="table">
@@ -262,12 +291,12 @@
                         <th scope="col">#</th>
                         <th scope="col">FlightNumber</th>
                         <th scope="col">AirlineName</th>
-                        <th scope="col">Depart Time</th>
-                        <th scope="col">Arrive Time</th>
+                        <th scope="col">Depart time</th>
+                        <th scope="col">Arrive time</th>
+                        <th scope="col">Estimate time</th>
                         <th scope="col">From</th>
                         <th scope="col">To</th>
-                        <th scope="col">FlightCost</th>
-                        <th scope="col">Flight _id</th>
+                        <th scope="col">FlightCost</th>     
                     </tr>
 
                     <% flights.forEach((flight, index)=> { %>
@@ -289,6 +318,9 @@
                                 <%= flight.arriveTime %>
                             </td>
                             <td>
+                                <%= flight.totalTime %> hr
+                            </td>
+                            <td>
                                 <%= flight.from.city%>
                             </td>
                             <td>
@@ -297,18 +329,16 @@
                             <td>
                                 ฿ <%= flight.flightCost %>
                             </td>
-                            <td>
-                                <%= flight._id %>
-                            </td>
+
 
                             <td>
-                                <form action='manager/<%= flight._id %>/flight-edit' method="GET">
+                                <form action='<%= flight._id %>/flight-edit' method="GET">
                                     <button type="submit" class="btn-warning">edit</button>
                                 </form>
                             </td>
 
                             <td>
-                                <form action='manager/<%= flight._id %>?_method=delete' method="POST">
+                                <form action='<%= flight._id %>?_method=delete' method="POST">
                                     <button class="btn-danger">delete</button>
                                 </form>
                             </td>

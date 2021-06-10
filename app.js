@@ -15,7 +15,7 @@ var express = require('express'),
     Airport = require('./models/airport'),
     Booking = require('./models/booking'),
     Contact = require('./models/contact'),
-    Traveller = require('./models/traveller'),
+    Traveler = require('./models/traveler'),
     indexRoutes = require('./routes/index'),
     flightsRoutes = require('./routes/flight'),
     managerRoutes = require('./routes/manager')
@@ -52,6 +52,17 @@ passport.use(new LocalStrategy(
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
+
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
     res.locals.error = req.flash('error');
@@ -74,6 +85,7 @@ app.post('/flight/:id/booking', function (req, res) {
         var booker_id = req.user._id,
             booker_username = req.user.firstname;
     }
+
 
     var bookinfo =
     {
@@ -116,6 +128,10 @@ app.post('/flight/:id/payment', function (req, res) {
 
     var booking_id = req.body.booked_id
 
+    var bookingID = makeid(5);
+
+    
+
     var contact_title = req.body.contact_title
     var contact_firstname = req.body.contact_firstname;
     var contact_lastname = req.body.contact_lastname;
@@ -134,32 +150,32 @@ app.post('/flight/:id/payment', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log("Contact created")
-            console.log(newcontact);
-            console.log(newcontact._id);
+            // console.log("Contact created")
+            // console.log(newcontact);
+            // console.log(newcontact._id);
 
             Booking.findById(booking_id, async function (err, booking_result) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log("book result")
-                    console.log(booking_result);
-                    console.log("book seat")
-                    console.log(booking_result.seat);
-                    console.log("book contact id save")
+                    // console.log("book result")
+                    // console.log(booking_result);
+                    // console.log("book seat")
+                    // console.log(booking_result.seat);
+                    // console.log("book contact id save")
                     Booking.update(
                         { _id: booking_result._id },
-                        { $set: { contact: newcontact._id } }
+                        { $set: { contact: newcontact._id, bookingID: bookingID } }
                         , function (err, bookingUpdate) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                console.log("book result after contact")
-                                console.log(bookingUpdate);
+                                // console.log("book result after contact")
+                                // console.log(bookingUpdate);
                             
                             }
                         });
-                 
+                    
 
                     var travelers_title = req.body.traveler_title;
                     var travelers_firstname = req.body.traveler_firstname;
@@ -168,8 +184,8 @@ app.post('/flight/:id/payment', function (req, res) {
                     var travelers_nationallity = req.body.traveler_nationallity;
                     var travelers_passportnumber = req.body.traveler_passportnumber;
                     var travelers_passportdate = req.body.traveler_passportdate;
-                    console.log("Travelers title")
-                    console.log(travelers_title);
+                    // console.log("Travelers title")
+                    // console.log(travelers_title);
                     for (let index = 0; index < booking_result.seat; index++) {
                         var traveler_title = travelers_title[index]
                         var traveler_firstname = travelers_firstname[index]
@@ -178,8 +194,8 @@ app.post('/flight/:id/payment', function (req, res) {
                         var traveler_nationallity = travelers_nationallity[index]
                         var traveler_passportnumber = travelers_passportnumber[index]
                         var traveler_passportdate = travelers_passportdate[index]
-                        console.log("Traveler title")
-                        console.log(traveler_title);
+                        // console.log("Traveler title")
+                        // console.log(traveler_title);
 
                         var tarveler_info = {
                             title: traveler_title,
@@ -191,23 +207,23 @@ app.post('/flight/:id/payment', function (req, res) {
                             passportexp: traveler_passportdate
                         }
 
-                        Traveller.create(tarveler_info, function (err, newtraveler) {
+                        Traveler.create(tarveler_info, function (err, newtraveler) {
                             if (err) {
                                 console.log(err);
                             } else {
                                 console.log("Traveler " + index + " Create")
                                 console.log(newtraveler);
-                                // booking_result.travellers.push(newtraveler);
-                                // booking_result.update({travellers:newtraveler});
-                                Booking.update(
+                                // booking_result.travelers.push(newtraveler);
+                                // booking_result.update({travelers:newtraveler});
+                                 Booking.update(
                                     { _id: booking_result._id },
-                                    { $push: { travellers:newtraveler } }
+                                    { $push: { travelers:newtraveler } }
                                  , function (err, bookingUpdate) {
                                     if (err) {
                                         console.log(err);
                                     } else {
-                                        console.log("Updated")
-                                        console.log(bookingUpdate);
+                                        // console.log("Updated")
+                                        // console.log(bookingUpdate);
                                     
                                     }
                                 });
@@ -219,22 +235,71 @@ app.post('/flight/:id/payment', function (req, res) {
                         });
 
                     }
-                    console.log("Booking has been updated")
-                }
-            });
 
-            res.render("payment/payment.ejs");
+                    res.redirect('/flight/payment/' + booking_result._id)
+                }
+               
+
+            });       
         }
     });
 });
+// for juking the async problem
+app.get('/flight/payment/:bookid', function (req, res) {
 
-app.get('/flight/payment/confirm', function (req, res) {
-    res.render("payment/payment-confirm.ejs")
+    Booking.findById(req.params.bookid).populate("contact").populate({ path: 'travelers' }).populate({ path: 'flight', populate: [{ path: 'airlineName' }, { path: 'from', select: 'city' }, { path: 'to', select: 'city' }] }).exec(function (err, bookingpop_result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Booking pop");
+            console.log(bookingpop_result);
+            res.render("payment/payment.ejs", { booking: bookingpop_result });
+        }
+    });
+
+});
+
+app.post('/flight/:id/payment/confirm', function (req, res) {
+    var method = req.body.method
+
+    Booking.findById(req.params.id).populate("contact").populate({path: 'travelers' }).populate({path: 'flight', populate: [{path: 'airlineName'}, {path: 'from', select: 'city'}, {path: 'to', select: 'city'}]  }).exec(function (err, bookingpop_result) {
+        if (err) {
+            console.log(err);
+        } else {
+                    
+                    res.render("payment/payment-confirm.ejs", {booking: bookingpop_result, method})
+                }     
+        
+    });
+   
 });
 
 
-app.get('/flight/payment/done', function (req, res) {
-    res.render("payment/payment-done.ejs")
+app.post('/flight/:id/payment/done', function (req, res) {
+    var method = req.body.method
+
+    Booking.update(
+        { _id: req.params.id },
+        { $set: { paymentstatus: "payment success" } }
+        , function (err, bookingUpdate) {
+            if (err) {
+                console.log(err);
+            } else {
+                // console.log("book result after contact")
+                // console.log(bookingUpdate);
+            
+            }
+        });
+
+    Booking.findById(req.params.id).populate("contact").populate({path: 'travelers' }).populate({path: 'flight', populate: [{path: 'airlineName'}, {path: 'from', select: 'city'}, {path: 'to', select: 'city'}]  }).exec(function (err, bookingpop_result) {
+        if (err) {
+            console.log(err);
+        } else {
+                    
+                    res.render("payment/payment-done.ejs", {booking: bookingpop_result, method})
+                }     
+        
+    });
 });
 
 

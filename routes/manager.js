@@ -24,26 +24,26 @@ var express = require('express'),
 
 
 
-router.get('/', function (req, res) {
+router.get('/flight', function (req, res) {
     Flight.find().populate('airlineName from to').exec(function (err, flight) {
         if (err) {
             console.log(err);
         }
         else {
-            console.log(flight)
+            // console.log(flight)
 
             Airport.find({}, function (err, airport_result) {
                 if (err) {
                     console.log(err);
                 }
                 else {
-                    console.log(airport_result)
+                    // console.log(airport_result)
                     Airline.find({}, function (err, airline_result) {
                         if (err) {
                             console.log(err);
                         }
                         else {
-                            console.log(airline_result)
+                            // console.log(airline_result)
                             res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
                         }
                     });
@@ -61,13 +61,14 @@ router.post('/flight-add', function (req, res) {
     var airlineName = req.body.airlineName;
     var departTime = req.body.departTime;
     var arriveTime = req.body.arriveTime;
+    var totalTime = req.body.totalTime;
     var maxseat = req.body.maxseat;
     var from = req.body.from;
     var to = req.body.to;
     var flightCost = req.body.flightCost;
     var flightclass = req.body.flightclass;
     var baggage = req.body.baggage;
-    var seatselect = req.body.seatselect;
+    var wifi = req.body.wifi;
     var entertain = req.body.entertain;
     var meal = req.body.meal;
     var usb = req.body.usb;
@@ -81,6 +82,7 @@ router.post('/flight-add', function (req, res) {
         airlineName: airlineName,
         departTime: departTime,
         arriveTime: arriveTime,
+        totalTime: totalTime,
         maxseat: maxseat,
         from: from,
         to: to,
@@ -88,7 +90,7 @@ router.post('/flight-add', function (req, res) {
         flightclass: flightclass,
         classdetail: {
             baggage: baggage,
-            seatselect: seatselect,
+            wifi: wifi,
             entertain: entertain,
             meal: meal,
             usb: usb
@@ -101,7 +103,7 @@ router.post('/flight-add', function (req, res) {
             console.log(err);
         }
         else {
-            res.redirect('/manager')
+            res.redirect('/manager/flight')
         }
     });
 });
@@ -119,13 +121,13 @@ router.get('/:id/flight-edit', function (req, res) {
                     console.log(err);
                 }
                 else {
-                    console.log(airport_result)
+                    // console.log(airport_result)
                     Airline.find({}, function (err, airline_result) {
                         if (err) {
                             console.log(err);
                         }
                         else {
-                            console.log(airline_result)
+                            // console.log(airline_result)
                             res.render('manager/flight-edit', { flight: flight_result, airports: airport_result, airlines: airline_result })
                         }
                     });
@@ -137,14 +139,14 @@ router.get('/:id/flight-edit', function (req, res) {
 });
 
 router.put('/:id/flight-edit', function (req, res) {
-    console.log("Data to update")
-    console.log(req.body.flight)
-    Flight.findByIdAndUpdate(req.params.id, req.body.flight, function(err, flight_updated) {
+    // console.log("Data to update")
+    // console.log(req.body.flight)
+    Flight.findByIdAndUpdate(req.params.id, req.body.flight, function (err, flight_updated) {
         if (err) {
             console.log(err);
         }
         else {
-            res.redirect('/manager')
+            res.redirect('/manager/flight')
         }
 
     });
@@ -152,12 +154,12 @@ router.put('/:id/flight-edit', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
-    Flight.findByIdAndRemove(req.params.id, function(err, flight_deleted) {
+    Flight.findByIdAndRemove(req.params.id, function (err, flight_deleted) {
         if (err) {
             console.log(err);
         }
         else {
-            res.redirect('/manager')
+            res.redirect('/manager/flight')
         }
 
     });
@@ -167,33 +169,167 @@ router.delete('/:id', function (req, res) {
 router.post('/search', function (req, res) {
 
     var result = req.body.result;
-    var query = { airlineName: { "$regex": result } };
-    console.log(query)
+    var search_by = req.body.by;
+
     console.log(result);
+    if (result === ""){
+        Flight.find({}).populate("airlineName from to").exec(function (err, flight) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                Airport.find({}, function (err, airport_result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        // console.log(airport_result)
+                        Airline.find({}, function (err, airline_result) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                // console.log(airline_result)
+                                res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
+                            }
+                        });
 
-    Flight.find(query, function (err, flight) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.render('manager/flight.ejs', { flights: flight })
-        }
-    });
+                    }
+                });
+            }
+        });
 
+    }
+
+    if (search_by === "by_airline") {
+
+        Airline.find({ name: { "$regex": result, $options: 'i' } }, function (err, airlines) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                // console.log(airlines);
+                var id_array = [];
+                airlines.forEach(airline => {
+                   id_array.push(airline._id) 
+                });
+                Flight.find({ airlineName: {$in : id_array} } ).populate("airlineName from to").exec(function (err, flight) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        Airport.find({}, function (err, airport_result) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                // console.log(airport_result)
+                                Airline.find({}, function (err, airline_result) {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                    else {
+                                        // console.log(airline_result)
+                                        res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
+                                    }
+                                });
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+    }
+    else if (search_by === "by_city") {
+
+        Airport.find({ city: { "$regex": result, $options: 'i' } }, function (err, airports) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                var id_array = [];
+                airports.forEach(airport => {
+                   id_array.push(airport._id) 
+                });
+                Flight.find({ from: id_array }).populate("airlineName from to").exec(function (err, flight) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        Airport.find({}, function (err, airport_result) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                // console.log(airport_result)
+                                Airline.find({}, function (err, airline_result) {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                    else {
+                                        // console.log(airline_result)
+                                        res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
+                                    }
+                                });
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+    }
 
 });
 
 router.post('/sort', function (req, res) {
 
-    var query = Flight.find().sort({ flightCost: -1 })
-    console.log(query)
+    var sort_type = req.body.sort_type;
+    var query;
+    if (sort_type === "cost_low") {
+        console.log("in cost low sort")
+        query = { flightCost: 1 }
+    }
+    else if (sort_type === "cost_high") {
+        console.log("in cost high sort")
+        query = { flightCost: -1 }
+    }
+    else if (sort_type === "flight_low") {
+        console.log("in else sort")
+        query = { totalTime: 1 }
+    }
+    else if (sort_type === "flight_high") {
+        console.log("in else sort")
+        query = { totalTime: -1 }
+    }
 
-    Flight.find(query, function (err, flight) {
+
+    Flight.find({}).populate("airlineName from to").sort(query).exec(function (err, flight) {
         if (err) {
             console.log(err);
         }
         else {
-            res.render('manager/flight.ejs', { flights: flight })
+            Airport.find({}, function (err, airport_result) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    // console.log(airport_result)
+                    Airline.find({}, function (err, airline_result) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            // console.log(airline_result)
+                            res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, sort_type })
+                        }
+                    });
+
+                }
+            });
         }
     });
 
@@ -205,7 +341,7 @@ router.get('/airport', function (req, res) {
             console.log(err);
         }
         else {
-            console.log(airport_result);
+            // console.log(airport_result);
             res.render('manager/airport.ejs', { airports: airport_result })
         }
     });
@@ -247,9 +383,9 @@ router.get('/:id/airport-edit', function (req, res) {
 });
 
 router.put('/:id/airport-edit', function (req, res) {
-    console.log("Data to update")
-    console.log(req.body.airport)
-    Airport.findByIdAndUpdate(req.params.id, req.body.airport, function(err, flight_updated) {
+    // console.log("Data to update")
+    // console.log(req.body.airport)
+    Airport.findByIdAndUpdate(req.params.id, req.body.airport, function (err, flight_updated) {
         if (err) {
             console.log(err);
         }
@@ -262,7 +398,7 @@ router.put('/:id/airport-edit', function (req, res) {
 });
 
 router.delete('/:id/airport-del', function (req, res) {
-    Airport.findByIdAndRemove(req.params.id, function(err, flight_deleted) {
+    Airport.findByIdAndRemove(req.params.id, function (err, flight_deleted) {
         if (err) {
             console.log(err);
         }
@@ -281,7 +417,7 @@ router.get('/airline', function (req, res) {
             console.log(err);
         }
         else {
-            console.log(airline_result);
+            // console.log(airline_result);
             res.render('manager/airline.ejs', { airlines: airline_result })
         }
     });
@@ -314,12 +450,12 @@ router.get('/:id/airline-edit', function (req, res) {
 });
 
 router.put('/:id/airline-edit', upload.single('image'), function (req, res) {
-    console.log("Data to update")
-    console.log(req.body.airline)
-    if(req.file){
+    // console.log("Data to update")
+    // console.log(req.body.airline)
+    if (req.file) {
         req.body.airline.icon = '/uploads/' + req.file.filename;
     }
-    Airline.findByIdAndUpdate(req.params.id, req.body.airline, function(err, airline_updated) {
+    Airline.findByIdAndUpdate(req.params.id, req.body.airline, function (err, airline_updated) {
         if (err) {
             console.log(err);
         }
@@ -332,7 +468,7 @@ router.put('/:id/airline-edit', upload.single('image'), function (req, res) {
 });
 
 router.delete('/:id/airline-del', function (req, res) {
-    Airline.findByIdAndRemove(req.params.id, function(err, flight_deleted) {
+    Airline.findByIdAndRemove(req.params.id, function (err, flight_deleted) {
         if (err) {
             console.log(err);
         }

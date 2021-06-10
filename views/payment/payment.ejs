@@ -1,108 +1,128 @@
 <%- include('../partials/header.ejs') %>
-<%- include('../partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
 
-<section class="split">
-    
-    <div class="container">
+        <section class="split">
+
+            <div class="container">
 
 
-        <div class="head">
-            <h6>Payment method</h6>
-        </div>
+                <div class="head">
+                    <h6>Payment method</h6>
+                </div>
 
-        <div class="travelers">
+                
+                    <div class="travelers">
+                        <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
+                        <button class="mybtn" type="submit" name="method" value="bank"> Bank </button>
+                        </form>
+                        <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
+                        <button class="mybtn" type="submit" name="method" value="creditcard"> credit card </button>
+                        </form>
+                        <% if(!currentUser) { %>
+                            <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
+                            <button class="mybtn">Sign in to pay with points</button>
+                            </form>
+                            <% } else { %>
+                                <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
+                                <button class="mybtn" type="submit" name="method" value="dogepoint">Pay with DogePoint</button>
+                                </form>
+                                <% } %>
 
-            <div class="box">
 
-                <h6>Bank</h6>
 
-                <div class="split">
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Bank</button>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Bank 1</button>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Bank 2</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="container">
+
+                <div class="box">
+
+                    <h6>Booking ID & Status</h6>
+                    <div class="list-detail">
+                        <div>
+                            DogeAir ID:<%= booking.bookingID %>
+                        </div>
+                        <div>
+                            Payment Status:<%= booking.paymentstatus %>
+                        </div>
+                    </div>
+
                 </div>
 
 
-            </div>
+                <div class="box">
+                    <h4>Flight detail</h4>
 
-            <div class="box ">
+                    <div class="split">
 
-                <h6>Credit Card</h6>
 
-                <div class="split">
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Card</button>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Card 1</button>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Card 2</button>
+                        <div class="list-detail">
+                            <img src="<%= booking.flight.airlineName.icon %>" alt="Airline icon" width="60" height="60">
+
+                            <div>
+                                <%= booking.flight.airlineName.name %>
+                            </div>
+                        </div>
+
+                        <div class="list-detail">
+                            <div>
+                                <%= booking.flight.departTime %>
+                            </div>
+                            <div>
+                                <%= booking.flight.from.city %>
+                            </div>
+                        </div>
+
+                        <div class="text-center list-detail"><i class="fas fa-arrow-right"></i></div>
+
+                        <div class="list-detail">
+                            <div>
+                                <%= booking.flight.arriveTime %>
+                            </div>
+                            <div>
+                                <%= booking.flight.to.city %>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <h6>Flight cost</h6>
+                    <h4>Flight cost detail</h4>
+
+                    <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %>
+                    </h5>
+
+                    <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %>
+                    </h6>
+
+                </div>
+
+                <div class="box">
+
+                    <h6>Passenger detail</h6>
+                    traveler list
+                    <% booking.travelers.forEach((traveler, index)=> { %>
+                        <h6>
+                            <%= index+1 %>. <%= traveler.title %>
+                                    <%= traveler.firstname %>
+                                        <%= traveler.lastname %>
+                        </h6>
+                        <% }); %>
                 </div>
 
             </div>
-            
-            <div class="box">
-
-                <h6>Counter</h6>
-
-                <div class="split">
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Counter </button>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Counter 1</button>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Counter 2</button>
-                </div>
-
-            </div>
-
-            <div class="box">
-
-                <h6>Pay with DogePoint</h6>
-                <div class="text-center">
-
-                    <% if(!currentUser) { %>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Sign in to pay with points</button>
-                    <% } else { %>
-                    <button class="mybtn" type="" onclick="location.href='/flight/payment/confirm'">Pay with DogePoint</button>    
-                    <% } %>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="container">
-
-        <div class="box">
-
-            <h6>Booking ID & Status</h6>
-
-        </div>
-
-
-        <div class="box">
-
-            <h6>Flight detail</h6>
-
-        </div>
-
-    
-        <div class="box">
-
-            <h6>Flight cost</h6>
-
-        </div>
-
-        <div class="box">
-
-            <h6>Passenger detail</h6>
-
-        </div>
-
-    </div>
 
 
 
-</section>
+        </section>
 
 
-    
-    
-<%- include('../partials/footer.ejs') %>
 
+
+        <%- include('../partials/footer.ejs') %>

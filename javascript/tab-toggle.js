@@ -12,6 +12,7 @@ function tabswap() {
        
     });
      returnDate.toggleAttribute("Disabled")
+     returnDate.toggleAttribute("required")
 }
 
 
