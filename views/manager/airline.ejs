@@ -127,7 +127,7 @@
                             </td>
 
                             <td>
-                                <form action='<%= airline._id %>/airline-del?_method=delete' method="POST">
+                                <form onsubmit="return confirm('Are you sure you want to commit delete and go back?')" action='<%= airline._id %>/airline-del?_method=delete' method="POST">
                                     <button class="btn-danger">delete</button>
                                 </form>
                             </td>

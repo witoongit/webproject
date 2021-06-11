@@ -109,12 +109,24 @@ app.post('/flight/:id/booking', function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
+
+                    User.updateOne(
+                        { _id: req.user._id },
+                        { $set: { current_booking: newbooking._id } }
+                        , function (err, bookingUpdate) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                // console.log("book result after contact")
+                                // console.log(bookingUpdate);
+                                res.render("booking.ejs", { flight: flightbooked, booked: newbooking });
+                            }
+                        });
                     // console.log("after create booking");
                     // console.log(newbooking);
                     // console.log("flight booked2");
                     // console.log(flightbooked);
-
-                    res.render("booking.ejs", { flight: flightbooked, booked: newbooking });
+                   
                 }
 
             });
@@ -163,7 +175,7 @@ app.post('/flight/:id/payment', function (req, res) {
                     // console.log("book seat")
                     // console.log(booking_result.seat);
                     // console.log("book contact id save")
-                    Booking.update(
+                    Booking.updateOne(
                         { _id: booking_result._id },
                         { $set: { contact: newcontact._id, bookingID: bookingID } }
                         , function (err, bookingUpdate) {
@@ -215,7 +227,7 @@ app.post('/flight/:id/payment', function (req, res) {
                                 console.log(newtraveler);
                                 // booking_result.travelers.push(newtraveler);
                                 // booking_result.update({travelers:newtraveler});
-                                 Booking.update(
+                                 Booking.updateOne(
                                     { _id: booking_result._id },
                                     { $push: { travelers:newtraveler } }
                                  , function (err, bookingUpdate) {
@@ -236,6 +248,7 @@ app.post('/flight/:id/payment', function (req, res) {
 
                     }
 
+                    
                     res.redirect('/flight/payment/' + booking_result._id)
                 }
                
@@ -246,6 +259,7 @@ app.post('/flight/:id/payment', function (req, res) {
 });
 // for juking the async problem
 app.get('/flight/payment/:bookid', function (req, res) {
+
 
     Booking.findById(req.params.bookid).populate("contact").populate({ path: 'travelers' }).populate({ path: 'flight', populate: [{ path: 'airlineName' }, { path: 'from', select: 'city' }, { path: 'to', select: 'city' }] }).exec(function (err, bookingpop_result) {
         if (err) {
@@ -295,7 +309,6 @@ app.post('/flight/:id/payment/done', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-                    
                     res.render("payment/payment-done.ejs", {booking: bookingpop_result, method})
                 }     
         

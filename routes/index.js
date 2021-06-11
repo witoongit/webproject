@@ -1,6 +1,9 @@
+const booking = require('../models/booking');
+
 var express = require('express'),
     router  = express.Router(),
     User    = require('../models/user'),
+    Booking = require('../models/booking'),
     passport= require('passport')
 
 router.get('/', function(req,res){
@@ -74,9 +77,68 @@ router.get('/sign-out', function(req, res){
     res.redirect('/');
 });
 
-router.get('/user', isLoggedIn , function(req,res){
+router.get('/user/account', isLoggedIn , function(req,res){
     res.render("userAccount.ejs")
 });
+
+router.get('/user/booking', isLoggedIn , function(req,res){
+
+    var id = req.user._id;
+    var username = req.user.firstname;
+    var booking_query = {
+        booker: {
+            id: id,
+            username: username
+        }
+    }
+    console.log(booking_query)
+    
+    Booking.find(booking_query).populate("contact").populate({ path: 'travelers' }).populate({ path: 'flight', populate: [{ path: 'airlineName' }, { path: 'from', select: 'city' }, { path: 'to', select: 'city' }] }).exec(function(err, booking_result){
+        if(err){
+           console.log(err);
+        } else {
+            console.log(booking_result)
+            // if (booking_result == null) {
+            //     req.flash('error', 'Booking not found please try.')
+            //     res.redirect('/current-booking');
+            // }
+            res.render("userBooking.ejs", {bookings: booking_result})
+        }
+    });
+    
+});
+
+router.get('/current-booking', function(req,res){
+
+    if(req.isAuthenticated()){
+        res.redirect('/user/booking')
+    } else {
+        res.render("current-booking.ejs")
+    }
+    
+});
+
+router.post('/current-booking/search', function(req,res){
+
+    var bookingID = req.body.bookingID;
+
+    Booking.findOne( {bookingID:bookingID} ).populate("contact").populate({ path: 'travelers' }).populate({ path: 'flight', populate: [{ path: 'airlineName' }, { path: 'from', select: 'city' }, { path: 'to', select: 'city' }] }).exec(function(err, booking_result){
+        if(err){
+           console.log(err);
+        } else {
+            console.log(booking_result)
+            if (booking_result == null) {
+                req.flash('error', 'Booking not found please try.')
+                res.redirect('/current-booking');
+            }
+            res.render("current-booking-result.ejs", {booking: booking_result})
+        }
+    });
+
+    
+});
+
+
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){

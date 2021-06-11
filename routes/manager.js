@@ -24,7 +24,10 @@ var express = require('express'),
 
 
 
-router.get('/flight', function (req, res) {
+router.get('/flight', isLoggedIn, isAdmin, function (req, res) {
+
+    var flightclass = "all"
+    
     Flight.find().populate('airlineName from to').exec(function (err, flight) {
         if (err) {
             console.log(err);
@@ -44,7 +47,7 @@ router.get('/flight', function (req, res) {
                         }
                         else {
                             // console.log(airline_result)
-                            res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
+                            res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, flightclass})
                         }
                     });
 
@@ -55,7 +58,7 @@ router.get('/flight', function (req, res) {
     });
 });
 
-router.post('/flight-add', function (req, res) {
+router.post('/flight-add',  function (req, res) {
 
     var flightID = req.body.flightID;
     var airlineName = req.body.airlineName;
@@ -109,7 +112,7 @@ router.post('/flight-add', function (req, res) {
 });
 
 
-router.get('/:id/flight-edit', function (req, res) {
+router.get('/:id/flight-edit', isLoggedIn, isAdmin, function (req, res) {
 
     Flight.findById(req.params.id).populate("airlineName from to").exec(function (err, flight_result) {
         if (err) {
@@ -166,7 +169,7 @@ router.delete('/:id', function (req, res) {
 
 });
 
-router.post('/search', function (req, res) {
+router.post('/search',  function (req, res) {
 
     var result = req.body.result;
     var search_by = req.body.by;
@@ -286,28 +289,43 @@ router.post('/search', function (req, res) {
 });
 
 router.post('/sort', function (req, res) {
-
+    
+    var flightclass = req.body.flightclass;
     var sort_type = req.body.sort_type;
-    var query;
+    var sortquery;
+
     if (sort_type === "cost_low") {
         console.log("in cost low sort")
-        query = { flightCost: 1 }
+        sortquery = { flightCost: 1 }
     }
     else if (sort_type === "cost_high") {
         console.log("in cost high sort")
-        query = { flightCost: -1 }
+        sortquery = { flightCost: -1 }
     }
     else if (sort_type === "flight_low") {
         console.log("in else sort")
-        query = { totalTime: 1 }
+        sortquery = { totalTime: 1 }
     }
     else if (sort_type === "flight_high") {
         console.log("in else sort")
-        query = { totalTime: -1 }
+        sortquery = { totalTime: -1 }
+    }
+    
+    console.log(flightclass)
+
+    var flightQuery
+    if(flightclass !== "all" && flightclass !== undefined) {
+        flightQuery = {
+            flightclass: flightclass, 
+        } 
+    } else {
+       flightQuery = {}
     }
 
+    console.log(flightQuery)
 
-    Flight.find({}).populate("airlineName from to").sort(query).exec(function (err, flight) {
+
+    Flight.find(flightQuery).populate("airlineName from to").sort(sortquery).exec(function (err, flight) {
         if (err) {
             console.log(err);
         }
@@ -324,7 +342,7 @@ router.post('/sort', function (req, res) {
                         }
                         else {
                             // console.log(airline_result)
-                            res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, sort_type })
+                            res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, flightclass })
                         }
                     });
 
@@ -335,7 +353,7 @@ router.post('/sort', function (req, res) {
 
 });
 
-router.get('/airport', function (req, res) {
+router.get('/airport', isLoggedIn,  isAdmin, function (req, res) {
     Airport.find({}, function (err, airport_result) {
         if (err) {
             console.log(err);
@@ -359,7 +377,7 @@ router.post('/airport-add', function (req, res) {
         city: city,
     };
 
-    Airport.create(airport_info, function (err, newAirport) {
+    Airport.create(airport_info,  function (err, newAirport) {
         if (err) {
             console.log(err);
         }
@@ -370,7 +388,7 @@ router.post('/airport-add', function (req, res) {
 });
 
 
-router.get('/:id/airport-edit', function (req, res) {
+router.get('/:id/airport-edit', isLoggedIn,  isAdmin, function (req, res) {
 
     Airport.findById(req.params.id, function (err, airport_result) {
         if (err) {
@@ -383,7 +401,7 @@ router.get('/:id/airport-edit', function (req, res) {
 });
 
 router.put('/:id/airport-edit', function (req, res) {
-    // console.log("Data to update")
+    // console.log("Data to update") 
     // console.log(req.body.airport)
     Airport.findByIdAndUpdate(req.params.id, req.body.airport, function (err, flight_updated) {
         if (err) {
@@ -411,7 +429,7 @@ router.delete('/:id/airport-del', function (req, res) {
 });
 
 
-router.get('/airline', function (req, res) {
+router.get('/airline', isLoggedIn,  isAdmin, function (req, res) {
     Airline.find({}, function (err, airline_result) {
         if (err) {
             console.log(err);
@@ -423,7 +441,7 @@ router.get('/airline', function (req, res) {
     });
 });
 
-router.post('/airline-add', upload.single('image'), function (req, res) {
+router.post('/airline-add',  upload.single('image'), function (req, res) {
 
     req.body.airline.icon = '/uploads/' + req.file.filename;
     Airline.create(req.body.airline, function (err, newAirline) {
@@ -437,7 +455,7 @@ router.post('/airline-add', upload.single('image'), function (req, res) {
 });
 
 
-router.get('/:id/airline-edit', function (req, res) {
+router.get('/:id/airline-edit', isLoggedIn,  isAdmin, function (req, res) {
 
     Airline.findById(req.params.id, function (err, airline_result) {
         if (err) {
@@ -467,7 +485,7 @@ router.put('/:id/airline-edit', upload.single('image'), function (req, res) {
 
 });
 
-router.delete('/:id/airline-del', function (req, res) {
+router.delete('/:id/airline-del',  function (req, res) {
     Airline.findByIdAndRemove(req.params.id, function (err, flight_deleted) {
         if (err) {
             console.log(err);
@@ -479,6 +497,24 @@ router.delete('/:id/airline-del', function (req, res) {
     });
 
 });
+
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    req.flash('error', 'You need to sign in frist.')
+    res.redirect('/sign-in');
+}
+
+function isAdmin(req, res, next){
+    if(req.user.tier == 'Admin'){
+        return next();
+    }
+    req.flash('error', "You are not admin. Don't do that ")
+    res.redirect('/');
+}
+
 
 
 module.exports = router;

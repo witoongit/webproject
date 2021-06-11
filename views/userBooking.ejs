@@ -1,0 +1,125 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/nav.ejs') %>
+
+    <div class="usercontainer">
+
+            <!-- Tab -->
+        <div class="tab-list">
+            <ul class="list">
+                <li><button class="tab" onclick="location.href='/user/account'"> Account </button></li>
+                    <!-- <li><button  class="tab"> Change password </button></li> -->
+                <li><button class="tab" onclick="location.href='/user/booking'"> Current booking </button></li>
+                    <!-- <li><button  class="tab"> Passenger detail </button></li> -->
+                    <!-- <li><button  class="tab"> DogePoint™ </button></li> -->
+            </ul>
+        </div>
+
+        <div class="infos ">
+
+
+
+            <div class="info-head">
+
+                <div class="titlename">
+                    <h6 class="title"> Current Booking </h6>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="AirDoge ID">
+                </div>
+
+            </div>
+
+
+            <div class="info" id="booking">
+
+                <div class="left">
+                    <button class="mybtn"> Wait for payment</button>
+                </div>
+
+                <div class="middle">
+                    <button class="mybtn"> Payment confirmed</button>
+                </div>
+
+                <div class="right">
+                    <button class="mybtn"> Canceled </button>
+                </div>
+
+            </div>
+
+            <% bookings.forEach((booking)=> { %>
+                <div class="container">
+
+                    <div class="row">
+                        <div class="box col-6">
+                            <h4>Flight detail</h4>
+                            <div class="split">
+
+                                <div class="list-detail">
+                                    <img src="<%= booking.flight.airlineName.icon %>" alt="Airline icon" width="60"
+                                        height="60">
+
+                                    <div>
+                                        <%= booking.flight.airlineName.name %>
+                                    </div>
+                                </div>
+
+                                <div class="list-detail">
+                                    <div>
+                                        <%= booking.flight.departTime %>
+                                    </div>
+                                    <div>
+                                        <%= booking.flight.from.city %>
+                                    </div>
+                                </div>
+
+                                <div class="text-center list-detail"><i class="fas fa-arrow-right"></i></div>
+
+                                <div class="list-detail">
+                                    <div>
+                                        <%= booking.flight.arriveTime %>
+                                    </div>
+                                    <div>
+                                        <%= booking.flight.to.city %>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    
+                        <div class=" box col-4">
+
+                            <h6>Booking ID & Status</h6>
+                            <div class="text-start">
+                                <div>
+                                    DogeAir ID:  <%= booking.bookingID %>
+                                </div>
+                                <div>
+                                    Payment Status:  <%= booking.paymentstatus %>
+                                </div>
+                            </div>
+
+
+                            <h6>Passenger detail</h6>
+                            <% booking.travelers.forEach((traveler, index)=> { %>
+                                <h6>
+                                    <%= index+1 %>.<%= traveler.title %><%= traveler.firstname %> <%= traveler.lastname %>
+                                </h6>
+                            <% }); %>
+            
+                        </div>
+                    </div>
+
+            </div>
+
+            <% }) %>
+
+        </div>
+
+
+    </div>
+
+
+<%- include('partials/footer.ejs') %>

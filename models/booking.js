@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bookingSchema = new mongoose.Schema({
     bookingID:String,
     departDate:String,
+    returnDate:String,
     seat:Number,
     booker:{
         id:{

@@ -1,0 +1,104 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/nav.ejs') %>
+
+
+    <form class="my-4 text-center container" action='/current-booking/search' method="POST">
+        <div class="row justify-content-center">
+            <div class=" col-2">
+                <label> Enter your DogeAirID here </label>
+                <input type="text" class=" form-control"  name="bookingID"  placeholder="Ex. 1Ag5u">
+            </div>
+            <button class="mybtn col-1" type="submit" > Search <i class="fas fa-search"></i></button>
+        </div>
+
+    </form>
+
+
+    <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div class="container">
+                
+                
+                        <div class="box">
+                            <h4>Flight detail</h4>
+                
+                            <div class="split">
+                
+                
+                                <div class="list-detail">
+                                    <img src="<%= booking.flight.airlineName.icon %>" alt="Airline icon" width="60" height="60">
+                                   
+                                            <div>
+                                                <%= booking.flight.airlineName.name %>
+                                            </div>
+                                </div>
+                
+                                <div class="list-detail">
+                                    <div>
+                                        <%= booking.flight.departTime %>
+                                    </div>
+                                    <div>
+                                        <%= booking.flight.from.city %>
+                                    </div>
+                                </div>
+                
+                                <div class="text-center list-detail"><i class="fas fa-arrow-right"></i></div>
+                
+                                <div class="list-detail">
+                                    <div>
+                                        <%= booking.flight.arriveTime %>
+                                    </div>
+                                    <div>
+                                        <%= booking.flight.to.city %>
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                        </div>
+                
+                    
+                        <div class="box">
+                
+                            <h6>Flight cost</h6>
+                            <h4>Flight cost detail</h4>
+                
+                            <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %></h5>
+                
+                            <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %> 
+                            </h6>
+                
+                        </div>
+                
+                       
+                    </div>
+                
+                </div>
+                <div class="col-4">
+                    <div class="box">
+                
+                        <h6>Booking ID & Status</h6>
+                        <div class="list-detail">
+                            <div>
+                                DogeAir ID:<%= booking.bookingID %>
+                            </div>
+                            <div>
+                                Payment Status:<%= booking.paymentstatus %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                
+                        <h6>Passenger detail</h6>
+                        traveler list
+                        <% booking.travelers.forEach((traveler, index)=> { %>
+                            <h6> <%= index+1 %>. <%= traveler.title %> <%= traveler.firstname %> <%= traveler.lastname %></h6>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+<%- include('partials/footer.ejs') %>
+

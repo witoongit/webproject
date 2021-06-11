@@ -3,13 +3,16 @@
 
 
     <div class="result">
-      <h4>Departures flight <%= searchData.to %>
-      </h4>
-      <h6>Date of depart:<%= searchData.departDate %>
+
+        <h4>Departures flight <%= searchData.to %>
+        </h4>
+        <h6>Date of depart: <%= searchData.departDate %>
+        </h6>
+     
+     
+      <h6>Passenger seat: <%= searchData.seat %>
       </h6>
-      <h6>Passenger seat:<%= searchData.seat %>
-      </h6>
-      <h6>Flight class:<%= searchData.flightclass %>
+      <h6>Flight class: <%= searchData.flightclass %>
       </h6>
     </div>
 
@@ -33,6 +36,8 @@
             <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
             <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
             <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
           </form>
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="cost_high" name="sort_type">Cost (Highest)</button>
@@ -43,6 +48,8 @@
             <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
             <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
             <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
           </form>
         </ul>
       </div>
@@ -62,6 +69,8 @@
             <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
             <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
             <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
           </form>
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="flight_high" name="sort_type">Flight time (Longest)
@@ -72,6 +81,8 @@
             <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
             <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
             <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
           </form>
         </ul>
       </div>
@@ -86,13 +97,15 @@
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
         <form action='/flight/sort' method="POST">
-          <li><button class="dropdown-item" type="submit" value="" name="flightclass">All
+          <li><button class="dropdown-item" type="submit" value="all" name="flightclass">All
             </button></li>
           <textarea class="hidden" name=from><%= searchData.from %></textarea>
           <textarea class="hidden" name=to><%= searchData.to %></textarea>
           <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
           <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
           <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+          <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
         </form>
         <form action='/flight/sort' method="POST">
           <li><button class="dropdown-item" type="submit" value="economy" name="flightclass">Economy
@@ -102,6 +115,8 @@
           <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
           <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
           <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+          <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
         </form>
         <form action='/flight/sort' method="POST">
           <li><button class="dropdown-item" type="submit" value="business" name="flightclass">Buisness
@@ -111,6 +126,8 @@
           <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
           <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
           <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+          <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
         </form>
         <form action='/flight/sort' method="POST">
           <li><button class="dropdown-item" type="submit" value="first-class" name="flightclass">First-Class
@@ -120,13 +137,20 @@
           <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
           <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
           <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+          <textarea class="hidden" name=flag1 ><%= searchData.flag1  %></textarea>
+          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
         </form>
       </ul>
     </div>
 
 
     <% flights.forEach((flight)=> { %>
-      <form class="result-list split" action='/flight/<%= flight._id %>/confirm' method="POST">
+      <% if( searchData.flag1 ) { %>
+        <form class="result-list split" action='/flight/<%= flight._id %>/search_roundtrip' method="POST">
+      <% } else { %>
+        <form class="result-list split" action='/flight/<%= flight._id %>/confirm' method="POST">
+      <% } %>
+    
 
         <div class="list-detail">
           <img src="<%= flight.airlineName.icon %>" alt="Airline icon" width="60" height="60">
@@ -187,12 +211,16 @@
         
 
         <div class="list-detail">฿<%= flight.flightCost %> / person</div>
+
+
+        <button type="submit" class="mybtn" value="<%= flight._id %>" name="flightid"> Book a flight </button>
+
+        <!-- for sending data that's not in database -->
+        <textarea class="hidden" name=from><%= searchData.from %></textarea>
+        <textarea class="hidden" name=to><%= searchData.to  %></textarea>
         <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
         <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
         <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
-
-        <button type="submit" class="mybtn" value="<%= flight._id %>" name="flightid"> Book a fight </button>
-        <!-- <div class="list-detail">Drop down more detail</div> -->
       </form>
       <% }) %>
 

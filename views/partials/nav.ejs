@@ -3,14 +3,19 @@
 
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          
-      
+        
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
               <li><a href="/" class="nav-link px-2 navdec navadj">Home</a></li>
               <li><a href="/flight" class="nav-link px-2 navdec navadj">Flights</a></li>
               <!-- <li><a href="#" class="nav-link px-2 navdec navadj">Hotels</a></li> -->
-              <li><a href="/user" class="nav-link px-2 navdec navadj">DogePoint™</a></li>
-              <li><a href="/user" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+              <li><a href="/user/account" class="nav-link px-2 navdec navadj">DogePoint™</a></li>
+            <% if(!currentUser) { %>            
+                <li><a href="/current-booking" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+            <% } else { %>
+              <form action='/user/booking' method="GET" >
+                <li><a href="/user/booking" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+              </form>
+            <% } %>
             </ul>
       
             <% if(!currentUser) { %>
@@ -20,7 +25,7 @@
             </div>
             <% } else { %>
             <div class="text-end">
-              <a href="/user" class="nav-linx px-2 navdec navadj"> <i class="far fa-user"></i> <%= currentUser.firstname%> </a>
+              <a href="/user/account" class="nav-linx px-2 navdec navadj"> <i class="far fa-user"></i> <%= currentUser.firstname%> </a>
               <button type="button" onclick="location.href='/sign-out'" class="btn btn-outline-light me-2 navadj">Log Out</button>
             </div>
             <% } %>

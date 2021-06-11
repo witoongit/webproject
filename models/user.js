@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
+const booking = require('./booking');
 
 
 var userSchema = new mongoose.Schema({
@@ -13,7 +14,14 @@ var userSchema = new mongoose.Schema({
     tier: {
         type:String,
         default:"Member"
-    }
+    },
+    dogepoint: Number,
+    current_booking: [
+            {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Booking'
+        }
+    ]
 });
 
 userSchema.plugin(passportLocalMongoose);
