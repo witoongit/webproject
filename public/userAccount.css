@@ -19,11 +19,7 @@
     border: solid 2px gray;
 }
 
-.list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+
 
 .tab-list {
     width: 25%;
@@ -32,19 +28,25 @@
 }
 
 .infos {
-    width: 75%;
+    width: 100%;
     font-size: medium;
 }
 
 .info {
     display: flex;
-    margin-top: 0;
-    border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: .25rem;
+    border-top: 0;
+
 }
 
 .info-head{
-    color: black;
-    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: .25rem;
 }
 
 .info-left, .info-right{
@@ -58,6 +60,57 @@
     padding-left: 5%;
     padding-right: 5%;
 }
+
+@media screen and (max-width: 1000px) {
+    .usercontainer {
+
+        display: block;
+    } 
+
+    .infos {
+        width: 100%;
+        font-size: medium;
+    }
+
+    .tab-list {
+        width: 50%;
+        display: flex;
+        gap: 2;
+        padding: 0;
+    }
+
+    .tab{
+        background-color: rgb(255, 204, 38);
+        border: solid gray 1px;
+        padding: 8px 25px 8px 25px;
+        text-align: start;
+        font-size: 90%;
+        border-radius: 4px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    
+
+}
+
+@media screen and (max-width: 650px) {
+
+        
+    .info {
+        display: block;
+        margin-top: 0;
+        border-collapse: collapse;
+    }
+    .info-left, .info-right{
+        width: 100%;
+        padding: 10px 0 10px 0;
+        color: black;
+    }
+    
+
+}
+
 
 .tab{
     background-color: rgb(255, 204, 38);

@@ -1,55 +1,39 @@
-<%- include('partials/header.ejs') %>
-    <%- include('partials/nav.ejs') %>
+<%- include('../partials/header.ejs') %>
+    <%- include('../partials/nav.ejs') %>
 
         <section class="split">
 
 
-            <div class="container">
+            <div class="bookingcontainer">
 
-                <% if(!currentUser) { %>
-                    <div class="split">
-                        <div>
-                            log in for ez booking
-                        </div>
-                        <button onclick="location.href='/sign-in'">Sign in</button>
-                    </div>
-                    <% } %>
-
-                        <form action='/flight/<%= booked._id %>/payment' method="POST">
-
+                        <form action='/flight/payment/<%= booked._id %>/' method="POST">
 
                             <div class="head">
                                 <h6>Contact Detail</h6>
                             </div>
 
                             <div class="travelers">
-
-                                <div class="box">
-
-                                    <h6>Select from contact list</h6>
-
+                                <div class="ms-3" style="width: 20%;">
                                     <label  class="form-label">Name title</label>
-                                    <select class="form-select" aria-label="Default select example" name="traveler_title" required>
+                                    <select class="form-select" aria-label="Default select example" name="contact_title" required>
                                         <option value="Mr.">Mr.</option>
                                         <option value="Mrs.">Mrs.</option>
                                         <option value="Ms.">Ms.</option>
                                     </select>
-
-                                    <div class="split">
-                                        <input class="input-line" type="text" name="contact_firstname" placeholder="First Name" required>
-                                        <input class="input-line" type="text" name="contact_lastname" placeholder="Last Name" required>
-                                    </div>
-
-                                    <div class="split">
-                                        <input class="input-line"  name="contact_phonenumber" placeholder="phone number"  
-                                        type="tel" placeholder="0906485241" required>
-                                        <input class="input-line" type="email" name="contact_email" 
-                                            placeholder="E-mail" required>
-                                    </div>
-
                                 </div>
 
 
+                                <div class="split">
+                                    <input class="input-line" type="text" name="contact_firstname" placeholder="First Name" required>
+                                    <input class="input-line" type="text" name="contact_lastname" placeholder="Last Name" required>
+                                </div>
+
+                                <div class="split">
+                                    <input class="input-line"  name="contact_phonenumber" placeholder="phone number"  
+                                    type="tel" placeholder="0906485241" required>
+                                    <input class="input-line" type="email" name="contact_email" 
+                                        placeholder="E-mail" required>
+                                </div>
                             </div>
 
 
@@ -65,14 +49,15 @@
                                         <h6>Tarveler <%= i+1 %>
                                         </h6>
 
-                                        
-                                        <label  class="form-label">Name title</label>
-                                        <select class="form-select" aria-label="Default select example" name="traveler_title" required>
-                                            <option value="Mr.">Mr.</option>
-                                            <option value="Mrs.">Mrs.</option>
-                                            <option value="Ms.">Ms.</option>
-                                        </select>
-
+                                        <div class="ms-3" style="width: 20%;">
+                                            <label  class="form-label">Name title</label>
+                                            <select class="form-select" aria-label="Default select example" name="traveler_title" required>
+                                                <option value="Mr.">Mr.</option>
+                                                <option value="Mrs.">Mrs.</option>
+                                                <option value="Ms.">Ms.</option>
+                                            </select>
+                                        </div>
+                                      
 
                                         <div class="split">
                                             <input class="input-line" type="text" name="traveler_firstname" placeholder="First Name" required>
@@ -100,14 +85,11 @@
 
                                     </div>
                                     <% } %>
-
-
                             </div>
-
             </div>
 
 
-            <div class="container">
+            <div class="bookingcontainer">
 
 
                 <div class="box">
@@ -118,8 +100,6 @@
 
                         <div class="list-detail">
                             <img src="<%= flight.airlineName.icon %>" alt="Airline icon" width="60" height="60">
-                            <% console.log("in booking") %>
-                                <% console.log(flight) %>
                                     <div>
                                         <%= flight.airlineName.name %>
                                     </div>
@@ -163,7 +143,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button class="mybtn" type="submit" value="<%= booked._id %>" name="booked_id">Next</button>
+                    <button class="btn btn-warning px-5" type="submit" value="<%= booked._id %>" name="booked_id">Next</button>
                 </div>
                 </form>
 
@@ -175,5 +155,3 @@
 
 
 
-
-        <%- include('partials/footer.ejs') %>

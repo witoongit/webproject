@@ -3,7 +3,7 @@
 
         <section class="split">
 
-            <div class="container">
+            <div class="bookingcontainer">
 
 
                 <div class="head">
@@ -11,30 +11,42 @@
                 </div>
 
                 
-                    <div class="travelers">
-                        <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
+                <div class="travelers d-flex">
+                    <form action='/flight/payment/<%= booking._id %>/confirm' method="POST">
                         <button class="mybtn" type="submit" name="method" value="bank"> Bank </button>
-                        </form>
-                        <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
+                    </form>
+                    <form action='/flight/payment/<%= booking._id %>/confirm' method="POST">
                         <button class="mybtn" type="submit" name="method" value="creditcard"> credit card </button>
-                        </form>
-                        <% if(!currentUser) { %>
-                            <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
-                            <button class="mybtn">Sign in to pay with points</button>
-                            </form>
-                            <% } else { %>
-                                <form action='/flight/<%= booking._id %>/payment/confirm' method="POST">
-                                <button class="mybtn" type="submit" name="method" value="dogepoint">Pay with DogePoint</button>
-                                </form>
-                                <% } %>
+                    </form>
+                    <% if(!currentUser) { %>
+                    <form action='/sign-in' method="POST">
+                        <button class="mybtn">Sign in to pay with points</button>
+                    </form>
+                    <% } else { %>
+                    <form action='/flight/payment/<%= booking._id %>/confirm' method="POST">
+                        <button class="mybtn" type="submit" name="method" value="dogepoint">Pay with DogePoint</button>
+                    </form>
+                    <% } %>
+                </div>
 
+                    
 
+                <div class="box">
 
-                    </div>
-                </form>
+                    <h6>Flight cost</h6>
+                    <h4>Flight cost detail</h4>
+
+                    <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %>
+                    </h5>
+
+                    <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %>
+                    </h6>
+
+                </div>
+             
             </div>
 
-            <div class="container">
+            <div class="bookingcontainer">
 
                 <div class="box">
 
@@ -92,28 +104,10 @@
 
                 <div class="box">
 
-                    <h6>Flight cost</h6>
-                    <h4>Flight cost detail</h4>
-
-                    <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %>
-                    </h5>
-
-                    <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %>
-                    </h6>
-
-                </div>
-
-                <div class="box">
-
                     <h6>Passenger detail</h6>
-                    traveler list
                     <% booking.travelers.forEach((traveler, index)=> { %>
-                        <h6>
-                            <%= index+1 %>. <%= traveler.title %>
-                                    <%= traveler.firstname %>
-                                        <%= traveler.lastname %>
-                        </h6>
-                        <% }); %>
+                        <div> <%= index+1 %>. <%= traveler.title %> <%= traveler.firstname %> <%= traveler.lastname %></div>
+                    <% }); %>
                 </div>
 
             </div>
@@ -124,5 +118,3 @@
 
 
 
-
-        <%- include('../partials/footer.ejs') %>

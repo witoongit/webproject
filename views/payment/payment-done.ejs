@@ -26,6 +26,7 @@
 
         </div>
 
+
     </div>
     <div class="container">
 
@@ -82,25 +83,14 @@
 
         </div>
 
-    
-        <div class="box">
-
-            <h6>Flight cost</h6>
-            <h4>Flight cost detail</h4>
-
-            <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %></h5>
-
-            <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %> 
-            </h6>
-
-        </div>
+  
 
         <div class="box">
 
             <h6>Passenger detail</h6>
             traveler list
             <% booking.travelers.forEach((traveler, index)=> { %>
-                <h6> <%= index+1 %>. <%= traveler.title %> <%= traveler.firstname %> <%= traveler.lastname %></h6>
+                <div> <%= index+1 %>. <%= traveler.title %> <%= traveler.firstname %> <%= traveler.lastname %></div>
             <% }); %>
         </div>
 
@@ -110,5 +100,4 @@
 </section>
 
     
-<%- include('../partials/footer.ejs') %>
 

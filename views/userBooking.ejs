@@ -5,32 +5,31 @@
 
             <!-- Tab -->
         <div class="tab-list">
-            <ul class="list">
-                <li><button class="tab" onclick="location.href='/user/account'"> Account </button></li>
+                <button class="tab" onclick="location.href='/user/account'"> Account </button>
                     <!-- <li><button  class="tab"> Change password </button></li> -->
-                <li><button class="tab" onclick="location.href='/user/booking'"> Current booking </button></li>
+                <button class="tab" onclick="location.href='/user/booking'"> Current booking </button>
                     <!-- <li><button  class="tab"> Passenger detail </button></li> -->
                     <!-- <li><button  class="tab"> DogePoint™ </button></li> -->
-            </ul>
         </div>
 
         <div class="infos ">
 
 
 
-            <div class="info-head">
+            <div class="info-head mb-5">
 
                 <div class="titlename">
                     <h6 class="title"> Current Booking </h6>
                 </div>
-
+<!-- 
                 <div>
                     <input type="text" placeholder="AirDoge ID">
-                </div>
+                </div> -->
+                
 
             </div>
 
-
+<!-- 
             <div class="info" id="booking">
 
                 <div class="left">
@@ -45,16 +44,15 @@
                     <button class="mybtn"> Canceled </button>
                 </div>
 
-            </div>
+            </div> -->
 
             <% bookings.forEach((booking)=> { %>
-                <div class="container">
 
-                    <div class="row">
+
+                    <div class="row ms-2">
                         <div class="box col-6">
                             <h4>Flight detail</h4>
                             <div class="split">
-
                                 <div class="list-detail">
                                     <img src="<%= booking.flight.airlineName.icon %>" alt="Airline icon" width="60"
                                         height="60">
@@ -104,15 +102,12 @@
 
                             <h6>Passenger detail</h6>
                             <% booking.travelers.forEach((traveler, index)=> { %>
-                                <h6>
-                                    <%= index+1 %>.<%= traveler.title %><%= traveler.firstname %> <%= traveler.lastname %>
-                                </h6>
+                                <div> <%= index+1 %>. <%= traveler.title %> <%= traveler.firstname %> <%= traveler.lastname %></div>
                             <% }); %>
             
                         </div>
                     </div>
 
-            </div>
 
             <% }) %>
 
@@ -121,5 +116,3 @@
 
     </div>
 
-
-<%- include('partials/footer.ejs') %>

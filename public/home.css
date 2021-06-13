@@ -1,0 +1,10 @@
+.centered {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    /* transform: translate(-50%, -50%); */
+}
+
+.card{
+    opacity: 0.9;
+}

@@ -1,104 +1,174 @@
 <%- include('../partials/header.ejs') %>
-<%- include('../partials/nav.ejs') %>
 
 
-<div class="position-relative">
-    <img src="https://wallpaperaccess.com/full/2692164.jpg" class="banner">
-    <div class="position-absolute top-0 start-0 searchbox">
+<nav class="p-3 bg-dark text-white">
 
-        <button class="flight-tab" >One way</button>
-        <button class="flight-tab notactive">Roundtrip</button>
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <!-- <li>
+            <a href="/" >
+              <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="60" height="60">
+            </a>
+          </li> -->
+          <a class="navbar-brand navicon navadj">DogeAir</a>
+          <li><a href="/" class="nav-link px-2 navdec navadj">Home</a></li>
+          <li><a href="/flight" class="nav-link px-2 navactive navadj ">Flights</a></li>
+          <!-- <li><a href="#" class="nav-link px-2 navdec navadj">Hotels</a></li> -->
+          <li><a href="/user/account" class="nav-link px-2 navdec navadj">DogePoint™</a></li>
+        <% if(!currentUser) { %>            
+            <li><a href="/current-booking" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+        <% } else { %>
+          <form action='/user/booking' method="GET" >
+            <li><a href="/user/booking" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+          </form>
+        <% } %>
+        </ul>
+  
+        <% if(!currentUser) { %>
+        <div class="text-end">
+          <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Sign-in</button>
+          <button type="button"  onclick="location.href='/sign-up'" class="btn btn-warning">Sign-up</button>
+        </div>
+        <% } else { %>
+        <div class="text-end">
+          <a href="/user/account" class="nav-linx px-2 navdec navadj"> <i class="far fa-user"></i> <%= currentUser.firstname%> </a>
+          <button type="button" onclick="location.href='/sign-out'" class="btn btn-outline-light me-2 navadj">Sign-out</button>
+        </div>
+        <% } %>
+        
 
-        <form class="" action='/flight/search' method="POST">
-            
-            <div class="d-flex my-3">
-                <div> Flight Class </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="all" name="flightclass"
-                        id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        All
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="economy" name="flightclass"
-                        id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Economy
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="business" name="flightclass"
-                        id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Buisness
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="first-class" name="flightclass"
-                        id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        First-Class
-                    </label>
-                </div>
-            </div>
-            
-            <div class=" input">
-                <label for="airportfrom" class="form-label">From</label>
-                <select class="form-select" list="airports" name="from" id="airportfrom" placeholder="Ex.Thailand">>
-                    <% airports.forEach((airport)=> { %>
-                        <option value="<%= airport._id %>"> <%= airport.city %> </option>
-                            <% }) %>
-                </select>
-            </div>
-
-            <div class="input">
-                <label for="airportto" class="form-label">To</label>
-                <select class="form-select" list="airports" name="to" id="airport" placeholder="Ex.Thailand">>
-                    <% airports.forEach((airport)=> { %>
-                        <option value="<%= airport._id %>"> <%= airport.city %> </option>
-                            <% }) %>
-                </select>
-            </div>
-
-            <div class="split">
-                <div class="form-floating input">
-                    <input type="date" min="" class="form-control"  id="departDate" name="departDate" placeholder=""  required>
-                    <label for="floatingLastname">Depart date</label>
-                </div>
-
-                <div class="form-floating input ">
-                    <input type="date" class="form-control active-toggle" id="returnDate" name="returnDate" placeholder=""  Disabled>
-                    <label for="returnDate">Return date</label>
-                </div>
-            </div>
-
-            <!-- <div class="split">
-                <div class="form-floating input">
-                    <input type="text" class="form-control" id="floatingLastname" name="flightclass" placeholder="">
-                    <label for="floatingLastname">Class</label>
-                </div>
-
-                <div class="form-floating input">
-                    <input type="text" class="form-control" id="floatingLastname" placeholder="">
-                    <label for="floatingLastname">Stops</label>
-                </div>
-            </div> -->
-
-            <div class="form-floating input">
-                <input type="number" min="0" max="6" class="form-control" id="floatingLastname" name="seat" placeholder="" required>
-                <label for="floatingLastname">Seat</label>
-            </div>
-
-
-            <button type="submit" class="btn btn-warning text-center searchbutton">Search</button>
-        </form>
-
+      </div>
     </div>
     
-    
-</div>
-    
-    
-<%- include('../partials/footer.ejs') %>
+  </nav>
 
+
+        <!-- <div class="position-relative">
+    <img src="https://wallpaperaccess.com/full/2692164.jpg" class="banner"> -->
+
+        <div class="container">
+            <div class="imagebanner">
+            <div class="row justify-content-center">
+                <div class="searchbox col-md-10 col-lg-7  my-5 p-5">
+
+
+                    <button class="flight-tab pe-5 py-2">One way</button>
+                    <button class="flight-tab notactive pe-5 py-2">Roundtrip</button>
+
+                    <form class="" action='/flight/search' method="POST">
+
+                        <div class="d-flex my-3" id="classradio">
+                            <strong> Flight Class: </strong>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="all" name="flightclass"
+                                    id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    All
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="economy" name="flightclass"
+                                    id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Economy
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="business" name="flightclass"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Buisness
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="first-class" name="flightclass"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    First-Class
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input mb-2 col-lg-6">
+                                <label for="airportfrom" class="form-label fw-bold ">From</label>
+                                <select class="form-select p-3" list="airports" name="from" id="airportfrom"
+                                    placeholder="Ex.Thailand">>
+                                    <% airports.forEach((airport)=> { %>
+                                        <option value="<%= airport._id %>">
+                                            <%= airport.city %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+    
+                            <div class="input mb-2 col-lg-6">
+                                <label for="airportto" class="form-label fw-bold">To</label>
+                                <select class="form-select p-3" list="airports " name="to" id="airport"
+                                    placeholder="Ex.Thailand">>
+                                    <% airports.forEach((airport)=> { %>
+                                        <option value="<%= airport._id %>">
+                                            <%= airport.city %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                      
+
+                        <div class="row">
+                            <div class="mb-2 col-lg-6">
+                                <label for="floatingLastname" class="form-label fw-bold">Depart date</label>
+                                <input type="date" min="" class="form-control p-3" id="departDate" name="departDate"
+                                    placeholder="" required>
+                                
+                            </div>
+
+                            <div class="mb-2 col-lg-6">
+                                <label for="returnDate" class="form-label fw-bold">Return date</label>
+                                <input type="date" class="form-control  p-3 active-toggle" id="returnDate" name="returnDate"
+                                    placeholder="" Disabled>
+                                
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <!-- <div class="mb-2 col-lg-6">
+                                <label for="floatingLastname" class="form-label fw-bold">Seat</label>
+                                <input type="number" min="1" max="6" class="form-control p-3" id="floatingLastname" name="seat"
+                                    placeholder="1-6 seat per booking" required> 
+                            </div> -->
+                            <div class="mb-2 col-lg-6">
+                                <label for="seatnum" class="form-label fw-bold">Seat</label>
+                                <select class="form-select p-3" list="airports " name="seat" id="seatnum" required>
+                                        <option value="1">1 seat</option>
+                                        <option value="2">2 seat</option>
+                                        <option value="3">3 seat</option>
+                                        <option value="4">4 seat</option>
+                                        <option value="5">5 seat</option>
+                                        <option value="6">6 seat</option>
+                                </select>
+                            </div>
+
+                       
+                            <div class="mb-2 col-lg-6 text-center ">
+                                <button type="submit" class="btn btn-warning searchbutton px-5 my-5">Search</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="col-xl-4 my-5 py-5" id="dogediv" >
+                    <img src="\uploads\DogeCircle2.png" class="img-fluid" id="dogeicon">
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- </div> -->
+
+
+        <%- include('../partials/footer.ejs') %>

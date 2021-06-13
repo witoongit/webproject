@@ -2,7 +2,7 @@
 
 <div class="signform-container">
 
-  <div class="form-container">
+  <div class="form-container px-4" >
 
     <form action='/sign-up' method="POST" class="from-adj" >
 
@@ -14,25 +14,18 @@
         <h1 class="h3 mb-3 fw-normal text-white">Please sign up</h1>
   
       </div>
+     
 
-      <!-- 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div> --> 
-
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingTitle" name='title' placeholder="Title" required>
-        <label for="floatingTitle">Title</label>
-      </div>
 
       <div class="split">
+
+
+        <select class="form-floating" style="flex-basis: 20%" aria-label="Default select example" name="title" required>
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Ms.">Ms.</option>
+        </select>
+
 
         <div class="form-floating">
           <input type="text" class="form-control" id="floatingFirstname" name='firstname' placeholder="First name" required>
@@ -70,22 +63,23 @@
 
       </div>
 
-      <div class="checkbox mb-3 text-start text-white">
+      <!-- <div class="checkbox mb-3 text-start text-white">
         <label>
           <input type="checkbox" value="agreement" required> By submitting my information, I acknowledge and accept the terms of Doge Airlines' 
           <a href="#">Privacy Policy and terms and conditions</a> of the registered customer account.
         </label>
-      </div>
+      </div> -->
+        
+      <a href="/sign-in">
+        <h6>Already have an account?</h6>
+      </a>
+
       
 
       <div class="text-center">
         <button class="mybtn" type="submit">Sign up</button>
       </div>
-      <!-- 
-      <a href="/sign-in">
-        <h6>Already have an account?</h6>
-      </a> -->
-
+    
     </form>
 
   </div>

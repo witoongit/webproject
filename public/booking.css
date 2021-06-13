@@ -1,7 +1,6 @@
 
-.container{
-    margin: 1rem;
-
+.bookingcontainer{
+    padding: 2rem;
 }
 
 .input-line{
@@ -12,21 +11,17 @@
 }
 
 .head{
-    border: 1px solid black;
-    margin-top: 1em;
-    padding: 1em;
-    border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: rgb(255, 196, 68);
+    margin-top: 1rem;
+    padding: 1rem;
 }
 
 .travelers{
-    border: 1px solid black;
-    border-collapse: collapse;
-
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-top: 0;
+    background-color: #fff;
+    padding: 1rem;
 }
 
 
-.box{
-    border: 1px solid black;
-    padding: 1em;
-    margin: 1em;
-}

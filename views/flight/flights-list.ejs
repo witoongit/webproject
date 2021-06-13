@@ -2,27 +2,28 @@
   <%- include('../partials/nav.ejs') %>
 
 
-    <div class="result">
+    <div class="container box my-3">
 
-        <h4>Departures flight <%= searchData.to %>
-        </h4>
-        <h6>Date of depart: <%= searchData.departDate %>
-        </h6>
+      <h4>Departures flight <%= searchData.to %>
+      </h4>
+      <h6>Date of depart: <%= searchData.departDate %>
+      </h6>
      
      
       <h6>Passenger seat: <%= searchData.seat %>
       </h6>
       <h6>Flight class: <%= searchData.flightclass %>
       </h6>
+
     </div>
 
 
 
 
-    <div class="mb-3 flex-d flex-row-reverse">
+    <div class="mb-3 d-flex flex-row-reverse container">
 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+      <div class="dropdown" id="sort_cost">
+        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
           aria-expanded="false">
           cost
         </button>
@@ -54,8 +55,8 @@
         </ul>
       </div>
 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+      <div class="dropdown" id="sort_flight">
+        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
           aria-expanded="false">
           Flight time
         </button>
@@ -86,134 +87,142 @@
           </form>
         </ul>
       </div>
-    </div>
+
+  
+
+
+
+      <div class="dropdown" id="sort_class">
+        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          class
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <form action='/flight/sort' method="POST">
+            <li><button class="dropdown-item" type="submit" value="all" name="flightclass">All
+              </button></li>
+            <textarea class="hidden" name=from><%= searchData.from %></textarea>
+            <textarea class="hidden" name=to><%= searchData.to %></textarea>
+            <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
+            <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
+            <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
+          </form>
+          <form action='/flight/sort' method="POST">
+            <li><button class="dropdown-item" type="submit" value="economy" name="flightclass">Economy
+              </button></li>
+            <textarea class="hidden" name=from><%= searchData.from %></textarea>
+            <textarea class="hidden" name=to><%= searchData.to %></textarea>
+            <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
+            <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
+            <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
+          </form>
+          <form action='/flight/sort' method="POST">
+            <li><button class="dropdown-item" type="submit" value="business" name="flightclass">Buisness
+              </button></li>
+            <textarea class="hidden" name=from><%= searchData.from %></textarea>
+            <textarea class="hidden" name=to><%= searchData.to %></textarea>
+            <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
+            <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
+            <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
+          </form>
+          <form action='/flight/sort' method="POST">
+            <li><button class="dropdown-item" type="submit" value="first-class" name="flightclass">First-Class
+              </button></li>
+            <textarea class="hidden" name=from><%= searchData.from %></textarea>
+            <textarea class="hidden" name=to><%= searchData.to %></textarea>
+            <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
+            <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
+            <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
+            <textarea class="hidden" name=flag1 ><%= searchData.flag1  %></textarea>
+            <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
+          </form>
+        </ul>
+      </div>
 
     </div>
-
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        class
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <form action='/flight/sort' method="POST">
-          <li><button class="dropdown-item" type="submit" value="all" name="flightclass">All
-            </button></li>
-          <textarea class="hidden" name=from><%= searchData.from %></textarea>
-          <textarea class="hidden" name=to><%= searchData.to %></textarea>
-          <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
-          <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
-          <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
-          <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
-          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
-        </form>
-        <form action='/flight/sort' method="POST">
-          <li><button class="dropdown-item" type="submit" value="economy" name="flightclass">Economy
-            </button></li>
-          <textarea class="hidden" name=from><%= searchData.from %></textarea>
-          <textarea class="hidden" name=to><%= searchData.to %></textarea>
-          <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
-          <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
-          <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
-          <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
-          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
-        </form>
-        <form action='/flight/sort' method="POST">
-          <li><button class="dropdown-item" type="submit" value="business" name="flightclass">Buisness
-            </button></li>
-          <textarea class="hidden" name=from><%= searchData.from %></textarea>
-          <textarea class="hidden" name=to><%= searchData.to %></textarea>
-          <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
-          <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
-          <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
-          <textarea class="hidden" name=flag1><%= searchData.flag1  %></textarea>
-          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
-        </form>
-        <form action='/flight/sort' method="POST">
-          <li><button class="dropdown-item" type="submit" value="first-class" name="flightclass">First-Class
-            </button></li>
-          <textarea class="hidden" name=from><%= searchData.from %></textarea>
-          <textarea class="hidden" name=to><%= searchData.to %></textarea>
-          <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
-          <textarea class="hidden" name=returnDate><%= searchData.returnDate  %></textarea>
-          <textarea class="hidden" name=seat><%= searchData.seat  %></textarea>
-          <textarea class="hidden" name=flag1 ><%= searchData.flag1  %></textarea>
-          <textarea class="hidden" name=flag2><%= searchData.flag2  %></textarea>
-        </form>
-      </ul>
-    </div>
-
 
     <% flights.forEach((flight)=> { %>
       <% if( searchData.flag1 ) { %>
-        <form class="result-list split" action='/flight/<%= flight._id %>/search_roundtrip' method="POST">
+        <form class="" action='/flight/<%= flight._id %>/search_roundtrip' method="POST">
       <% } else { %>
-        <form class="result-list split" action='/flight/<%= flight._id %>/confirm' method="POST">
+        <form class="" action='/flight/<%= flight._id %>/confirm' method="POST">
       <% } %>
     
+        <div class="container card mb-3">
+          <div class="row align-items-center justify-content-center text-center" id=flightlist>
 
-        <div class="list-detail">
-          <img src="<%= flight.airlineName.icon %>" alt="Airline icon" width="60" height="60">
-          <div>
-            <%= flight.airlineName.name %>
-          </div>
-          <div>
-            <%= flight.flightID %>
-          </div>
-        </div>
+            <div class="list-detail  col-sm-4 col-xl-2" id="flightairline">
+              <img src="<%= flight.airlineName.icon %>" alt="Airline icon" width="45" height="45">
+              <div class="fw-bold">
+                <%= flight.airlineName.name %>
+              </div>
+              <div class="">
+                <%= flight.flightID %>
+              </div>
+            </div>
 
-        <div class="list-detail">
-          <div>
-            <%= flight.departTime %>
-          </div>
-          <div>
-            <%= flight.from.city %>
-          </div>
-        </div>
-        <div class="list-detail"><i class="fas fa-arrow-right"></i></div>
-        <div class="list-detail">
-          <div>
-            <%= flight.arriveTime%>
-          </div>
-          <div>
-            <%= flight.to.city %>
-          </div>
-        </div>
-        <div class="d-flex flex-column">
-          <div class="list-detail">Estimate time <%= flight.totalTime %> hr</div>
-          <% if (  flight.stop === 0  ) { %>
-          <div class="list-detail"> non-stop </div>
-          <% } else if (  flight.stop === 1  ) { %>
-          <div class="list-detail"> 1 stop </div>
-          <% }  else { %>
-          <div class="list-detail"> +2-stop </div>
-          <% } %>
-        </div>
+            <div class="list-detail col-4 col-sm-3 col-xl-1" id="flightfrom">
+              <div class="fw-bold">
+                <%= flight.departTime %>
+              </div>
+              <div class="">
+                <%= flight.from.city %>
+              </div>
+            </div>
 
-        <div class="d-flex flex-column">
-          <div class="list-detail">Bag Weight <%= flight.classdetail.baggage %> kg</div>
-          <% if (  flight.classdetail.entertain ) { %>
-          <div class="list-detail"> In-flight entertainment </div>
-          <% }  if (  flight.classdetail.meal  ) { %>
-          <div class="list-detail"> In-flight meal  </div>
-          <% }  if (  flight.classdetail.wifi  ) { %>
-          <div class="list-detail"> Free wifi </div>
-          <% } if (  flight.classdetail.usb  ) {  %> 
-            <div class="list-detail"> Power & USB Port </div>
-          <% } %>       
-                    
+            <div class="list-detail col-3 col-sm-2 col-xl-1"><i class="fas fa-arrow-right"></i></div>
             
+          <div class="list-detail col-4 col-sm-3 col-xl-1 " id="flightto">
+            <div class="fw-bold">
+              <%= flight.arriveTime%>
+            </div>
+            <div class="">
+              <%= flight.to.city %>
+            </div>
+          </div>
+
+          <div class="list-detail col-6 col-sm-6 col-md-3 col-xl-1" id="flighttime">
+            <div class=" fw-bold">Estimate time <%= flight.totalTime %> hr</div>
+            <% if (  flight.stop === 0  ) { %>
+            <div class=""> non-stop </div>
+            <% } else if (  flight.stop === 1  ) { %>
+            <div class=""> 1 stop </div>
+            <% }  else { %>
+            <div class=""> +2-stop </div>
+            <% } %>
+          </div>
+          
+          <div class="list-detail col-6 col-sm-6 col-md-3 col-xl-2 text-start" id="flightclassinfo">
+            <div class="">Bag Weight <%= flight.classdetail.baggage %> kg</div>
+            <% if (  flight.classdetail.entertain ) { %>
+            <div class=""> In-flight entertainment </div>
+            <% }  if (  flight.classdetail.meal  ) { %>
+            <div class=""> In-flight meal  </div>
+            <% }  if (  flight.classdetail.wifi  ) { %>
+            <div class=""> Free wifi </div>
+            <% } if (  flight.classdetail.usb  ) {  %> 
+              <div class=""> Power & USB Port </div>
+            <% } %>       
+          </div>
+       
+          <div class="list-detail col-5 col-sm-5 col-md-3 col-xl-2" id="flightcost">
+            <div class="fw-bold">class: <%= flight.flightclass %></div>
+            <div class="fw-bold text-gold">฿<%= flight.flightCost %> / person</div>
+          </div>
+          
+          <div class="list-detail col-5 col-sm-5 col-md-3 col-xl-1 ">
+            <button type="submit" class="btn btn-warning px-3" value="<%= flight._id %>" name="flightid"> Book </button>
+          </div>
+
+          </div>
         </div>
-        
-        <div class="d-flex flex-column">
-          <div class="list-detail">class: <%= flight.flightclass %></div>
-        </div>
-        
 
-        <div class="list-detail">฿<%= flight.flightCost %> / person</div>
-
-
-        <button type="submit" class="mybtn" value="<%= flight._id %>" name="flightid"> Book a flight </button>
 
         <!-- for sending data that's not in database -->
         <textarea class="hidden" name=from><%= searchData.from %></textarea>
@@ -227,4 +236,3 @@
 
 
 
-        <%- include('../partials/footer.ejs') %>

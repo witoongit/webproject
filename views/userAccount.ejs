@@ -5,14 +5,11 @@
 
     <!-- Tab -->
     <div class="tab-list">
-      <ul class="list">
-        <li><button  class="tab" onclick="location.href='/user/account'"> Account </button></li>
+        <button  class="tab" onclick="location.href='/user/account'"> Account </button>
         <!-- <li><button  class="tab"> Change password </button></li> -->
-        <li><button  class="tab" type="submit" onclick="location.href='/user/booking'"> Current booking </button></li>
-  
+        <button  class="tab" type="submit" onclick="location.href='/user/booking'"> Current booking </button>
         <!-- <li><button  class="tab"> Passenger detail </button></li> -->
         <!-- <li><button  class="tab"> DogePoint™ </button></li> -->
-      </ul>
     </div>
 
     <div class="infos ">
@@ -20,6 +17,8 @@
 
       <!-- User Acount Start here -->
 
+
+      
       <div class="info-head">
 
         <div class="titlename">
@@ -33,7 +32,7 @@
       </div>
 
 
-      <div class="info" id="account">
+      <div class="info" style="margin-bottom: 144px;" id="account">
 
         <div class="info-left">
           <h6 class="data"> Name           <%=":" + currentUser.title + currentUser.firstname + " " + currentUser.lastname%>  </h6>
@@ -251,6 +250,3 @@
   </div>
   
   <!-- Container End here -->
-    
-<%- include('partials/footer.ejs') %>
-

@@ -1,7 +1,5 @@
 .searchbox{
-    margin-left: 5vw;
-    margin-top: 35px;
-    padding: 4vw;
+
     background: rgba(255, 255, 255, 0.5);
     border: solid 2px gray;
     border-radius: 5px;
@@ -11,7 +9,7 @@
 .flight-tab{
     font-size: medium;
     background-color: rgb(255, 183, 0);
-    padding: 5px 140px 5px 5px;
+    /* padding: 5px 140px 5px 5px; */
     border: solid gray 1px;
     border-radius: 2px;
     margin-left: 0;
@@ -24,6 +22,24 @@
     padding: 5px 15px 5px 15px;
     margin-top: 25px;
     margin-bottom: 0px;
+    
+}
+
+
+#dogeicon {
+    width: 30vw;
+    margin-top: 5%;
+}
+
+
+@media screen and (max-width: 1200px) {
+    #dogeicon {
+        display: none;
+    }
+    #dogediv {
+        display: none;
+    }
+
     
 }
 

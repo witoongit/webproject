@@ -1,10 +1,15 @@
 
     <nav class="p-3 bg-dark text-white">
 
-        <div class="container">
+        <div class="container-fluid">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <!-- <li>
+                <a href="/" >
+                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="60" height="60">
+                </a>
+              </li> -->
+              <a class="navbar-brand navdec navadj">DogeAir</a>
               <li><a href="/" class="nav-link px-2 navdec navadj">Home</a></li>
               <li><a href="/flight" class="nav-link px-2 navdec navadj">Flights</a></li>
               <!-- <li><a href="#" class="nav-link px-2 navdec navadj">Hotels</a></li> -->
@@ -20,13 +25,13 @@
       
             <% if(!currentUser) { %>
             <div class="text-end">
-              <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Login</button>
+              <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Sign-in</button>
               <button type="button"  onclick="location.href='/sign-up'" class="btn btn-warning">Sign-up</button>
             </div>
             <% } else { %>
             <div class="text-end">
               <a href="/user/account" class="nav-linx px-2 navdec navadj"> <i class="far fa-user"></i> <%= currentUser.firstname%> </a>
-              <button type="button" onclick="location.href='/sign-out'" class="btn btn-outline-light me-2 navadj">Log Out</button>
+              <button type="button" onclick="location.href='/sign-out'" class="btn btn-outline-light me-2 navadj">Sign-out</button>
             </div>
             <% } %>
             
@@ -36,4 +41,46 @@
         
       </nav>
 
+      <!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+        <div class="container-fluid">
+          <a href="/" >
+            <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="60" height="60">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="/" class="nav-link px-2 navdec navadj"  aria-current="page">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="/flight" class="nav-link px-2 navdec navadj">Flights</a>
+              </li>
+              <li class="nav-item">
+                <a href="/user/account" class="nav-link px-2 navdec navadj">DogePoint™</a>
+              </li>
+              <% if(!currentUser) { %>            
+                <li><a href="/current-booking" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+              <% } else { %>
+              <form action='/user/booking' method="GET" >
+                <li><a href="/user/booking" class="nav-link px-2 navdec navadj">Current Booking</a></li>
+              </form>
+              <% } %>
+            </ul>
 
+            <% if(!currentUser) { %>
+              <div class="text-end">
+                <button type="button" onclick="location.href='/sign-in'" class="btn btn-outline-light me-2">Login</button>
+                <button type="button"  onclick="location.href='/sign-up'" class="btn btn-warning">Sign-up</button>
+              </div>
+              <% } else { %>
+              <div class="text-end">
+                <a href="/user/account" class="nav-linx px-2 navdec navadj"> <i class="far fa-user"></i> <%= currentUser.firstname%> </a>
+                <button type="button" onclick="location.href='/sign-out'" class="btn btn-outline-light me-2 navadj">Log Out</button>
+              </div>
+            <% } %>
+
+          </div>
+        </div>
+      </nav> --> 

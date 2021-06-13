@@ -14,18 +14,34 @@
 
             <div class="box">
 
-                <form action='/flight/<%= booking._id %>/payment/done' method="POST">
+                <form action='/flight/payment/<%= booking._id %>/done' method="POST">
 
                 <h6>Method: <%= method %></h6>
                 <h6>Instruction</h6>
              
-                    <button class="mybtn" type="submit" name="method" value="<%= method %>"> pay </button>
+                <button class="mybtn" type="submit" name="method" value="<%= method %>"> pay </button>
                     
                 </form>
+                
         
             </div>
 
+                      
+ 
         </div>
+
+        <div class="box">
+
+            <h6>Flight cost</h6>
+            <h4>Flight cost detail</h4>
+
+            <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %></h5>
+
+            <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %> 
+            </h6>
+
+        </div>
+
 
     </div>
 
@@ -44,6 +60,8 @@
             </div>
 
         </div>
+
+
 
 
         <div class="box">
@@ -84,18 +102,6 @@
 
         </div>
 
-    
-        <div class="box">
-
-            <h6>Flight cost</h6>
-            <h4>Flight cost detail</h4>
-
-            <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %></h5>
-
-            <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %> 
-            </h6>
-
-        </div>
 
         <div class="box">
 
@@ -113,5 +119,5 @@
 </section>
 
     
-<%- include('../partials/footer.ejs') %>
+
 

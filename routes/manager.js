@@ -124,13 +124,11 @@ router.get('/:id/flight-edit', isLoggedIn, isAdmin, function (req, res) {
                     console.log(err);
                 }
                 else {
-                    // console.log(airport_result)
                     Airline.find({}, function (err, airline_result) {
                         if (err) {
                             console.log(err);
                         }
                         else {
-                            // console.log(airline_result)
                             res.render('manager/flight-edit', { flight: flight_result, airports: airport_result, airlines: airline_result })
                         }
                     });
@@ -142,8 +140,7 @@ router.get('/:id/flight-edit', isLoggedIn, isAdmin, function (req, res) {
 });
 
 router.put('/:id/flight-edit', function (req, res) {
-    // console.log("Data to update")
-    // console.log(req.body.flight)
+
     Flight.findByIdAndUpdate(req.params.id, req.body.flight, function (err, flight_updated) {
         if (err) {
             console.log(err);
@@ -186,13 +183,11 @@ router.post('/search',  function (req, res) {
                         console.log(err);
                     }
                     else {
-                        // console.log(airport_result)
                         Airline.find({}, function (err, airline_result) {
                             if (err) {
                                 console.log(err);
                             }
                             else {
-                                // console.log(airline_result)
                                 res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
                             }
                         });
@@ -211,7 +206,6 @@ router.post('/search',  function (req, res) {
                 console.log(err);
             }
             else {
-                // console.log(airlines);
                 var id_array = [];
                 airlines.forEach(airline => {
                    id_array.push(airline._id) 
@@ -226,13 +220,11 @@ router.post('/search',  function (req, res) {
                                 console.log(err);
                             }
                             else {
-                                // console.log(airport_result)
                                 Airline.find({}, function (err, airline_result) {
                                     if (err) {
                                         console.log(err);
                                     }
                                     else {
-                                        // console.log(airline_result)
                                         res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
                                     }
                                 });
@@ -266,13 +258,11 @@ router.post('/search',  function (req, res) {
                                 console.log(err);
                             }
                             else {
-                                // console.log(airport_result)
                                 Airline.find({}, function (err, airline_result) {
                                     if (err) {
                                         console.log(err);
                                     }
                                     else {
-                                        // console.log(airline_result)
                                         res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
                                     }
                                 });
@@ -295,24 +285,18 @@ router.post('/sort', function (req, res) {
     var sortquery;
 
     if (sort_type === "cost_low") {
-        console.log("in cost low sort")
         sortquery = { flightCost: 1 }
     }
     else if (sort_type === "cost_high") {
-        console.log("in cost high sort")
         sortquery = { flightCost: -1 }
     }
     else if (sort_type === "flight_low") {
-        console.log("in else sort")
         sortquery = { totalTime: 1 }
     }
     else if (sort_type === "flight_high") {
-        console.log("in else sort")
         sortquery = { totalTime: -1 }
     }
     
-    console.log(flightclass)
-
     var flightQuery
     if(flightclass !== "all" && flightclass !== undefined) {
         flightQuery = {
@@ -321,9 +305,6 @@ router.post('/sort', function (req, res) {
     } else {
        flightQuery = {}
     }
-
-    console.log(flightQuery)
-
 
     Flight.find(flightQuery).populate("airlineName from to").sort(sortquery).exec(function (err, flight) {
         if (err) {
@@ -335,13 +316,11 @@ router.post('/sort', function (req, res) {
                     console.log(err);
                 }
                 else {
-                    // console.log(airport_result)
                     Airline.find({}, function (err, airline_result) {
                         if (err) {
                             console.log(err);
                         }
                         else {
-                            // console.log(airline_result)
                             res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, flightclass })
                         }
                     });
@@ -359,7 +338,6 @@ router.get('/airport', isLoggedIn,  isAdmin, function (req, res) {
             console.log(err);
         }
         else {
-            // console.log(airport_result);
             res.render('manager/airport.ejs', { airports: airport_result })
         }
     });
@@ -401,8 +379,6 @@ router.get('/:id/airport-edit', isLoggedIn,  isAdmin, function (req, res) {
 });
 
 router.put('/:id/airport-edit', function (req, res) {
-    // console.log("Data to update") 
-    // console.log(req.body.airport)
     Airport.findByIdAndUpdate(req.params.id, req.body.airport, function (err, flight_updated) {
         if (err) {
             console.log(err);
@@ -435,7 +411,6 @@ router.get('/airline', isLoggedIn,  isAdmin, function (req, res) {
             console.log(err);
         }
         else {
-            // console.log(airline_result);
             res.render('manager/airline.ejs', { airlines: airline_result })
         }
     });
@@ -468,8 +443,6 @@ router.get('/:id/airline-edit', isLoggedIn,  isAdmin, function (req, res) {
 });
 
 router.put('/:id/airline-edit', upload.single('image'), function (req, res) {
-    // console.log("Data to update")
-    // console.log(req.body.airline)
     if (req.file) {
         req.body.airline.icon = '/uploads/' + req.file.filename;
     }

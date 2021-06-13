@@ -7,6 +7,8 @@ var express = require('express'),
     passport= require('passport')
 
 router.get('/', function(req,res){
+
+    
     res.render("home.ejs")
 });
 
@@ -27,7 +29,6 @@ router.post('/sign-up', function(req,res){
 
     // Check if password match or not if not sent back to register page
     if(password !== confirmpassword){
-        console.log("password not match")
         req.flash('error', 'password not match with confirm password.')
         return res.redirect('/sign-up');
     }
@@ -40,7 +41,7 @@ router.post('/sign-up', function(req,res){
             return res.redirect('/sign-up');
         }
         passport.authenticate('local')(req, res, function(){
-            req.flash('success', 'Welcome to DogeAir!' + user.firstname)
+            req.flash('success', 'Welcome to DogeAir! ' + user.firstname)
             res.redirect('/')
         });
     });  
@@ -91,17 +92,11 @@ router.get('/user/booking', isLoggedIn , function(req,res){
             username: username
         }
     }
-    console.log(booking_query)
     
     Booking.find(booking_query).populate("contact").populate({ path: 'travelers' }).populate({ path: 'flight', populate: [{ path: 'airlineName' }, { path: 'from', select: 'city' }, { path: 'to', select: 'city' }] }).exec(function(err, booking_result){
         if(err){
            console.log(err);
         } else {
-            console.log(booking_result)
-            // if (booking_result == null) {
-            //     req.flash('error', 'Booking not found please try.')
-            //     res.redirect('/current-booking');
-            // }
             res.render("userBooking.ejs", {bookings: booking_result})
         }
     });
@@ -126,7 +121,7 @@ router.post('/current-booking/search', function(req,res){
         if(err){
            console.log(err);
         } else {
-            console.log(booking_result)
+
             if (booking_result == null) {
                 req.flash('error', 'Booking not found please try.')
                 res.redirect('/current-booking');
