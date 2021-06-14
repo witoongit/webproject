@@ -12,11 +12,7 @@
     border: 2px solid gray;
 }
 
-/* @media(max-width: 992px){
-	#flighttime, #flightclassinfo{
-		display: none;
-	}
-} */
+
 .list-detail{
     margin-top: 1rem !important;
     margin-bottom: 1.5rem;
