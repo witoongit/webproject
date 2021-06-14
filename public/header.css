@@ -8,10 +8,6 @@
     text-decoration: none;
 }
 
-.navicon{
-    color: goldenrod;
-    text-decoration: none;
-}
 
 .navdec {
     color: goldenrod;
@@ -29,6 +25,10 @@
     border-radius: 2px ;
 }
 
+.navicon :hover{
+    color: goldenrod;
+    text-decoration: none;
+}
 
 .banner {
     width: 100%;

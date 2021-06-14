@@ -1,5 +1,5 @@
-<%- include('partials/header.ejs') %>
-<%- include('partials/nav.ejs') %>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
 
 
     <form class="my-4 text-center container" action='/current-booking/search' method="POST">
@@ -21,20 +21,23 @@
                 
                 
                         <div class="box">
-                            <h4>Flight detail</h4>
+                            <h6>Flight detail</h6>
                 
-                            <div class="split">
+                                <hr>
+                
+                                <div class="row align-items-center justify-content-center text-center" id=flightlist>
                 
                 
-                                <div class="list-detail">
+                
+                                <div class="list-detail  col-sm-4 col-xl-3" id="flightairline">
                                     <img src="<%= booking.flight.airlineName.icon %>" alt="Airline icon" width="60" height="60">
-                                   
-                                            <div>
-                                                <%= booking.flight.airlineName.name %>
-                                            </div>
+                
+                                    <div>
+                                        <%= booking.flight.airlineName.name %>
+                                    </div>
                                 </div>
                 
-                                <div class="list-detail">
+                                <div class="list-detail col-4 col-sm-3 col-xl-2" id="flightfrom">
                                     <div>
                                         <%= booking.flight.departTime %>
                                     </div>
@@ -43,9 +46,10 @@
                                     </div>
                                 </div>
                 
-                                <div class="text-center list-detail"><i class="fas fa-arrow-right"></i></div>
+                                <div class="list-detail col-3 col-sm-2 col-xl-3"><i class="fas fa-arrow-right"></i>
+                                </div>
                 
-                                <div class="list-detail">
+                                <div class="list-detail col-4 col-sm-3 col-xl-3" id="flightto">
                                     <div>
                                         <%= booking.flight.arriveTime %>
                                     </div>
@@ -58,17 +62,25 @@
                 
                         </div>
                 
-                    
                         <div class="box">
-                
-                            <h6>Flight cost</h6>
-                            <h4>Flight cost detail</h4>
-                
-                            <h5>฿ <%= booking.flight.flightCost %> x <%= booking.seat %></h5>
-                
-                            <h6>Total cost = ฿ <%= booking.flight.flightCost * booking.seat %> 
-                            </h6>
-                
+                            <h6 class="mb-3">Flight cost detail</h6>
+        
+                            <hr>
+        
+                            <div class="row">
+                                <h6 class="text-start col-6">seat x <%= booking.seat %> </h6>
+                                <div class="text-end col-6"> ฿ <%= booking.flight.flightCost %></div>
+                            </div>
+        
+                            <hr>
+        
+                            <div class="row">
+                                <h5 class="text-start col-6">Total cost</h5>
+                                    <h5 class="text-end col-6"> ฿ <%= booking.flight.flightCost * booking.seat %>
+                                    </h5>
+                            </div>
+        
+                            
                         </div>
                 
                        
@@ -77,20 +89,25 @@
                 </div>
                 <div class="col-4">
                     <div class="box">
-                
+
                         <h6>Booking ID & Status</h6>
+    
+                        <hr>
+    
                         <div class="list-detail">
                             <div>
-                                DogeAir ID:<%= booking.bookingID %>
+                                DogeAir ID:<%= " " + booking.bookingID %>
                             </div>
                             <div>
-                                Payment Status:<%= booking.paymentstatus %>
+                                Payment Status:<%= " " + booking.paymentstatus %>
                             </div>
                         </div>
+    
                     </div>
                     <div class="box">
                 
                         <h6>Passenger detail</h6>
+                        <hr>
                         traveler list
                         <% booking.travelers.forEach((traveler, index)=> { %>
                             <h6> <%= index+1 %>. <%= traveler.title %> <%= traveler.firstname %> <%= traveler.lastname %></h6>

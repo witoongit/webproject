@@ -33,20 +33,16 @@ router.get('/flight', isLoggedIn, isAdmin, function (req, res) {
             console.log(err);
         }
         else {
-            // console.log(flight)
-
             Airport.find({}, function (err, airport_result) {
                 if (err) {
                     console.log(err);
                 }
                 else {
-                    // console.log(airport_result)
                     Airline.find({}, function (err, airline_result) {
                         if (err) {
                             console.log(err);
                         }
                         else {
-                            // console.log(airline_result)
                             res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, flightclass})
                         }
                     });
@@ -168,6 +164,7 @@ router.delete('/:id', function (req, res) {
 
 router.post('/search',  function (req, res) {
 
+    var flightclass = req.body.flightclass;
     var result = req.body.result;
     var search_by = req.body.by;
 
@@ -188,7 +185,7 @@ router.post('/search',  function (req, res) {
                                 console.log(err);
                             }
                             else {
-                                res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
+                                res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, flightclass  })
                             }
                         });
 
@@ -225,7 +222,7 @@ router.post('/search',  function (req, res) {
                                         console.log(err);
                                     }
                                     else {
-                                        res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result })
+                                        res.render('manager/flight.ejs', { flights: flight, airports: airport_result, airlines: airline_result, flightclass })
                                     }
                                 });
 

@@ -1,43 +1,26 @@
 <%- include('partials/header.ejs') %>
 <%- include('partials/nav.ejs') %>
 
-  <!-- <div class="position-relative text-center">
-    <img src="\uploads\bg-hd.jpg" class="banner" style="filter: blur(1.5);"> 
-    <div class="centered">
-      <div class="card m-5 p-5">
-        <div class="row justify-content-center">
-          <div class="col-xs-1 col-sm-1 col-md-2 col-xl-4" id="dogeicon">
-            <img src="\uploads\DogeCircle.png" class="img-fluid">
-          </div>
-          <div class="col-xs-2 col-sm-4 col-md-4 col-xl-8">
-              <h4> Find what you want to do</h4>
-          </div>
-        </div>
+
+
+      <div class="">
+          <img class="banner" src="\uploads\DogeBanner.jpg" height="75%" > 
+      </div>  
+   
+
+    <div class="container my-5">
+
+      <h4>Partner Airline</h4>
+
+      <hr>
+
+      <div class="row justify-content-center">
+        <% airlines.forEach((airline)=> { %>
+          <div class="col-sm-2 m-3 text-center"><img src="<%= airline.icon %>" alt="airline icon" width="110" height="90"></div>    
+        <% }) %>
       </div>
-    </div>
-
-  </div> -->
   
-
-  <img src="\uploads\DogeBanner.jpg" class="banner" style="filter: blur(1.5);"> 
-
-
-
-
-  <div class="container split">
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-  </div>
-  <div class="container split">
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-    <div class="box"> recommendation</div>
-  </div>
+    </div>
 
 <%- include('partials/footer.ejs') %>
 

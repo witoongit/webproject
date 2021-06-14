@@ -2,6 +2,7 @@
 var express = require('express'),
     router = express.Router(),
     Flight = require('../models/flight'),
+    User    = require('../models/user'),
     Airport = require('../models/airport'),
     Booking = require('../models/booking')
 
@@ -27,6 +28,7 @@ router.post('/search', function (req, res) {
     var seat = req.body.seat
     var roundtrip_flag;
     var info_flag = true;
+
 
     // Check for roundtrip or oneway by return date
     if (returnDate !== undefined) {
@@ -72,8 +74,13 @@ router.post('/search', function (req, res) {
                 searchData.to = flight.to.city;
             });
 
-            // Check if there's no result found
-            if (flights.length == 0) {
+            
+            
+            if (from == to){
+                req.flash('error', 'Departure and Destination(from, to) can not be the same loacation.')
+                res.redirect('/flight');
+                // Check if there's no result found
+            } else if (flights.length == 0) {
                 req.flash('error', 'flight not found.')
                 res.redirect('/flight');
                 // Check if departure date is late then return date
@@ -241,7 +248,7 @@ router.post('/:id/confirm', function (req, res) {
         }
         else {
 
-            res.render("flight/flight-confirm.ejs", { flights: flight, bookinfo })
+            res.render("flight/flight-confirm.ejs", { flight: flight, bookinfo })
         }
     });
 });

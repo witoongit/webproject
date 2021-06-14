@@ -1,15 +1,12 @@
-<%- include('partials/header.ejs') %>
-<%- include('partials/nav.ejs') %>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
 
     <div class="usercontainer">
 
-            <!-- Tab -->
+         
         <div class="tab-list">
                 <button class="tab" onclick="location.href='/user/account'"> Account </button>
-                    <!-- <li><button  class="tab"> Change password </button></li> -->
                 <button class="tab" onclick="location.href='/user/booking'"> Current booking </button>
-                    <!-- <li><button  class="tab"> Passenger detail </button></li> -->
-                    <!-- <li><button  class="tab"> DogePoint™ </button></li> -->
         </div>
 
         <div class="infos ">
@@ -21,30 +18,15 @@
                 <div class="titlename">
                     <h6 class="title"> Current Booking </h6>
                 </div>
-<!-- 
-                <div>
-                    <input type="text" placeholder="AirDoge ID">
-                </div> -->
-                
 
             </div>
 
-<!-- 
-            <div class="info" id="booking">
 
-                <div class="left">
-                    <button class="mybtn"> Wait for payment</button>
-                </div>
-
-                <div class="middle">
-                    <button class="mybtn"> Payment confirmed</button>
-                </div>
-
-                <div class="right">
-                    <button class="mybtn"> Canceled </button>
-                </div>
-
-            </div> -->
+            <% if( bookings.length == 0  ) { %>
+            <div class="text-center">
+                <h3>No result</h3>
+            </div>
+            <% } %>
 
             <% bookings.forEach((booking)=> { %>
 

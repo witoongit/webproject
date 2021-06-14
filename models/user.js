@@ -15,7 +15,10 @@ var userSchema = new mongoose.Schema({
         type:String,
         default:"Member"
     },
-    dogepoint: Number,
+    dogepoint: {
+        type:Number,
+        default:0
+    },
     current_booking: [
             {
             type: mongoose.Schema.Types.ObjectId,

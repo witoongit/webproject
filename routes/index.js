@@ -4,12 +4,19 @@ var express = require('express'),
     router  = express.Router(),
     User    = require('../models/user'),
     Booking = require('../models/booking'),
+    Airline = require('../models/airline'),
     passport= require('passport')
 
 router.get('/', function(req,res){
+    Airline.find({},function(err, airline_result){
+        if(err){
+           console.log(err);
+        } else {
+            console.log(airline_result)
+            res.render("home.ejs", { airlines:airline_result})
+        }
 
-    
-    res.render("home.ejs")
+    });  
 });
 
 router.get('/sign-up', function(req,res){
@@ -57,16 +64,15 @@ passport.authenticate('local',
     {
         successFlash: true,
         failureFlash: true,
-        // successFlash: 'Successfully log in',
         failureFlash: 'Invalid username or password',
         failureRedirect: '/sign-in'
     }),function(req,res){
         if(req.user.tier === "Admin"){
-            // req.flash('success', 'Welcome Admin ' + req.user.firstname)
+            req.flash('success', 'Welcome Admin ' + req.user.firstname)
             res.redirect('/manager/flight');
         }
         else {
-            // req.flash('success', 'Welcome to DogeAir! ' + req.user.firstname)
+            req.flash('success', 'Welcome to DogeAir! ' + req.user.firstname)
             res.redirect('/');
         }
     }
@@ -74,12 +80,11 @@ passport.authenticate('local',
 
 router.get('/sign-out', function(req, res){
     req.logout();
-    // req.flash('success', 'You have successfully log out')
     res.redirect('/');
 });
 
 router.get('/user/account', isLoggedIn , function(req,res){
-    res.render("userAccount.ejs")
+    res.render("user/userAccount.ejs")
 });
 
 router.get('/user/booking', isLoggedIn , function(req,res){
@@ -97,7 +102,8 @@ router.get('/user/booking', isLoggedIn , function(req,res){
         if(err){
            console.log(err);
         } else {
-            res.render("userBooking.ejs", {bookings: booking_result})
+            console.log(booking_result)
+            res.render("user/userBooking.ejs", {bookings: booking_result})
         }
     });
     
@@ -108,7 +114,7 @@ router.get('/current-booking', function(req,res){
     if(req.isAuthenticated()){
         res.redirect('/user/booking')
     } else {
-        res.render("current-booking.ejs")
+        res.render("current-booking/current-booking.ejs")
     }
     
 });
@@ -126,7 +132,7 @@ router.post('/current-booking/search', function(req,res){
                 req.flash('error', 'Booking not found please try.')
                 res.redirect('/current-booking');
             }
-            res.render("current-booking-result.ejs", {booking: booking_result})
+            res.render("current-booking/current-booking-result.ejs", {booking: booking_result})
         }
     });
 

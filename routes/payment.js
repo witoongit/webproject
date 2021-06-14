@@ -4,6 +4,7 @@ var express = require('express'),
     Contact = require('../models/contact'),
     Traveler = require('../models/traveler')
 
+// Generate DogeAir ID 
 function makeid(length) {
         var result           = '';
         var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -48,15 +49,10 @@ router.post('/:book_id', function (req, res) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                // console.log("book result after contact")
-                                // console.log(bookingUpdate);
-                            
+                                
                             }
                         });
-                    
 
-                    // console.log("Travelers title")
-                    // console.log(travelers_title);
                     if(booking_result.seat == 1){
                         var traveler_title = req.body.traveler_title;
                         var traveler_firstname = req.body.traveler_firstname;
@@ -91,14 +87,9 @@ router.post('/:book_id', function (req, res) {
                                     if (err) {
                                         console.log(err);
                                     } else {
-                                        console.log("Updated 1 traveler")
-                                        console.log(bookingUpdate);
-                                    
                                     }
                                 });
-                                // console.log("book result after add")
-                                // console.log(booking_result);
-                                
+
                             }
 
                         });

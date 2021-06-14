@@ -1,69 +1,130 @@
 <%- include('../partials/header.ejs') %>
-<%- include('../partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
 
-    <div class="split">
-        <div class="bookingcontainer">
-            <div class="box">
+        <div class="row justify-content-center">
+            <div class="container m-3 col-md-7">
+                <div class="box">
 
-                <div class="split">
+                    <div class="row">
 
-                    <div>
-                        <h4>Flight from <%= flights.from.city %> to <%= flights.to.city %></h4>
-                        <h5>Date of departure:<%= bookinfo.departDate %></h5>
-                        <h6><%= bookinfo.seat %> seat</h6>
-                    </div>
+                        <div class="col-sm-12 col-md-8">
+                            <h4>Flight from <%= flight.from.city %> to <%= flight.to.city %>
+                            </h4>
+                            <h5>Date of departure:<%= bookinfo.departDate %>
+                            </h5>
+                            <h6>
+                                <%= bookinfo.seat %> seat
+                            </h6>
+                        </div>
 
-                    <div class="text-end">
-                        <button class="mybtn" onclick="goBack()" >Change</button>
+                        <div class="col-sm-12 col-md-4 my-3 text-end">
+                            <button class="mybtn" onclick="goBack()">Change</button>
+                        </div>
+
                     </div>
 
                 </div>
+                <div class="box">
+                    <h5>Flight detail</h5>
 
-            </div>
-            <div class="box">
-                <h4>Flight detail</h4>
+                        <div class="row align-items-center justify-content-center text-center" id=flightlist>
 
-                <div class="split">
+                            <div class="list-detail  col-sm-4 col-xl-2" id="flightairline">
+                                <img src="<%= flight.airlineName.icon %>" alt="Airline icon" width="45" height="45">
+                                <div class="fw-bold">
+                                    <%= flight.airlineName.name %>
+                                </div>
+                                <div class="">
+                                    <%= flight.flightID %>
+                                </div>
+                            </div>
 
+                            <div class="list-detail col-4 col-sm-3 col-xl-1" id="flightfrom">
+                                <div class="fw-bold">
+                                    <%= flight.departTime %>
+                                </div>
+                                <div class="">
+                                    <%= flight.from.city %>
+                                </div>
+                            </div>
 
-                    <div class="list-detail">
-                        <img src="<%= flights.airlineName.icon %>" alt="Airline icon" width="60" height="60">
-                        <div><%= flights.airlineName.name %></div>
-                    </div>
+                            <div class="list-detail col-3 col-sm-2 col-xl-1"><i class="fas fa-arrow-right"></i></div>
 
-                    <div class="list-detail">
-                        <div><%= flights.departTime %></div>
-                        <div><%= flights.from.city %></div>
-                    </div>
+                            <div class="list-detail col-4 col-sm-3 col-xl-1 " id="flightto">
+                                <div class="fw-bold">
+                                    <%= flight.arriveTime%>
+                                </div>
+                                <div class="">
+                                    <%= flight.to.city %>
+                                </div>
+                            </div>
 
-                    <div class="text-center list-detail"><i class="fas fa-arrow-right"></i></div>
+                            <div class="list-detail col-6 col-sm-4 col-md-3 col-xl-2" id="flighttime">
+                                <div class=" fw-bold">Estimate time <%= flight.totalTime %> hr</div>
+                                <% if ( flight.stop===0 ) { %>
+                                    <div class=""> non-stop </div>
+                                    <% } else if ( flight.stop===1 ) { %>
+                                        <div class=""> 1 stop </div>
+                                        <% } else { %>
+                                            <div class=""> +2-stop </div>
+                                            <% } %>
+                            </div>
 
-                    <div class="list-detail">
-                        <div><%= flights.arriveTime%></div>
-                        <div><%= flights.to.city %></div>
-                    </div>
-                    
+                            <div class="list-detail col-6 col-sm-4 col-md-3 col-xl-3 text-start" id="flightclassinfo">
+                                <div class="">Bag Weight <%= flight.classdetail.baggage %> kg</div>
+                                <% if ( flight.classdetail.entertain ) { %>
+                                    <div class=""> In-flight entertainment </div>
+                                    <% } if ( flight.classdetail.meal ) { %>
+                                        <div class=""> In-flight meal </div>
+                                        <% } if ( flight.classdetail.wifi ) { %>
+                                            <div class=""> Free wifi </div>
+                                            <% } if ( flight.classdetail.usb ) { %>
+                                                <div class=""> Power & USB Port </div>
+                                                <% } %>
+                            </div>
+
+                            <div class="list-detail col-12 col-sm-4 col-md-3 col-xl-2" id="flightcost">
+                                <div class="fw-bold">class: <%= flight.flightclass %>
+                                </div>
+                            </div>
+
+                        </div>
+
                 </div>
-                  
             </div>
+            <div class="container m-3 col-md-4">
+                <div class="box">
+                    <h3 class="mb-3">Flight cost detail</h4>
+
+                        <hr>
+
+                        <div class="row">
+                            <h6 class="text-start col-6">seat x <%= bookinfo.seat %>
+                                    </h5>
+                                    <div class="text-end col-6"> ฿ <%= flight.flightCost %>
+                                    </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <h5 class="text-start col-6">Total cost</h56>
+                                <h5 class="text-end col-6"> ฿ <%= flight.flightCost * parseInt(bookinfo.seat) %>
+                                </h5>
+                        </div>
+
+
+
+
+                </div>
+                <div>
+                    <form class="text-center" action='/flight/<%= flight._id %>/booking' method="POST">
+                        <textarea class="hidden" name=departDate><%= bookinfo.departDate %></textarea>
+                        <textarea class="hidden" name=seat><%= bookinfo.seat %></textarea>
+                        <button type="submit" class="mybtn" value="<%= flight._id %>" name="flightid"> Confirm Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+
         </div>
-        <div class="bookingcontainer" style="margin-bottom: 240px;">
-            <div class="box">
-                <h4>Flight cost detail</h4>
-
-                <h5>฿ <%= flights.flightCost %> x <%= bookinfo.seat %> seat</h5>
-                
-                <h6>Total cost = ฿ <%= flights.flightCost * parseInt(bookinfo.seat) %></h6>
-
-            </div>
-            <div>
-                <form class="text-center" action='/flight/<%= flights._id %>/booking' method="POST">
-                <textarea class="hidden" name=departDate><%= bookinfo.departDate %></textarea>
-                <textarea class="hidden" name=seat><%= bookinfo.seat %></textarea>    
-                <button type="submit" class="mybtn" value="<%= flights._id %>" name="flightid"> Confirm Booking </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-

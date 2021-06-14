@@ -31,6 +31,7 @@
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="cost_low" name="sort_type">Cost (Lowest)</button>
             </li>
+            <!-- To sent a data to query without the need to store in DB -->
             <textarea class="hidden" name=flightclass><%= searchData.flightclass %></textarea>
             <textarea class="hidden" name=from><%= searchData.from %></textarea>
             <textarea class="hidden" name=to><%= searchData.to %></textarea>
@@ -43,6 +44,7 @@
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="cost_high" name="sort_type">Cost (Highest)</button>
             </li>
+            <!-- To sent a data to query without the need to store in DB -->
             <textarea class="hidden" name=flightclass><%= searchData.flightclass %></textarea>
             <textarea class="hidden" name=from><%= searchData.from %></textarea>
             <textarea class="hidden" name=to><%= searchData.to %></textarea>
@@ -64,6 +66,7 @@
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="flight_low" name="sort_type">Flight time (Shotest)
               </button></li>
+              <!-- To sent a data to query without the need to store in DB -->
             <textarea class="hidden" name=flightclass><%= searchData.flightclass %></textarea>
             <textarea class="hidden" name=from><%= searchData.from %></textarea>
             <textarea class="hidden" name=to><%= searchData.to %></textarea>
@@ -76,6 +79,7 @@
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="flight_high" name="sort_type">Flight time (Longest)
               </button></li>
+              <!-- To sent a data to query without the need to store in DB -->
             <textarea class="hidden" name=flightclass><%= searchData.flightclass %></textarea>
             <textarea class="hidden" name=from><%= searchData.from %></textarea>
             <textarea class="hidden" name=to><%= searchData.to %></textarea>
@@ -101,6 +105,7 @@
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="all" name="flightclass">All
               </button></li>
+              <!-- To sent a data to query without the need to store in DB -->
             <textarea class="hidden" name=from><%= searchData.from %></textarea>
             <textarea class="hidden" name=to><%= searchData.to %></textarea>
             <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
@@ -112,6 +117,7 @@
           <form action='/flight/sort' method="POST">
             <li><button class="dropdown-item" type="submit" value="economy" name="flightclass">Economy
               </button></li>
+              <!-- To sent a data to query without the need to store in DB -->
             <textarea class="hidden" name=from><%= searchData.from %></textarea>
             <textarea class="hidden" name=to><%= searchData.to %></textarea>
             <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>
@@ -224,7 +230,7 @@
         </div>
 
 
-        <!-- for sending data that's not in database -->
+        <!-- To sent a data to query without the need to store in DB -->
         <textarea class="hidden" name=from><%= searchData.from %></textarea>
         <textarea class="hidden" name=to><%= searchData.to  %></textarea>
         <textarea class="hidden" name=departDate><%= searchData.departDate %></textarea>

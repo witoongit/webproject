@@ -1,95 +1,95 @@
 <%- include('partials/header.ejs') %>
 
-<div class="signform-container">
+  <div class="signform-container">
 
-  <div class="form-container px-4" >
+    <div class="form-container px-4">
 
-    <form action='/sign-up' method="POST" class="from-adj" >
+      <form action='/sign-up' method="POST" class="from-adj">
 
-      <div class="text-center">
+        <div class="text-center">
 
-        <a href="/">
-          <img class="mb-4" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g" alt="" width="80" height="80">
-        </a>
-        <h1 class="h3 mb-3 fw-normal text-white">Please sign up</h1>
-  
-      </div>
-     
+          <a href="/">
+            <img class="mb-4"
+              src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f9ed517-f705-42e3-960a-9d56d8bb2f67/d7gesj7-99f809b9-6219-4e50-8a59-d1fd1b41a350.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMWY5ZWQ1MTctZjcwNS00MmUzLTk2MGEtOWQ1NmQ4YmIyZjY3XC9kN2dlc2o3LTk5ZjgwOWI5LTYyMTktNGU1MC04YTU5LWQxZmQxYjQxYTM1MC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.PeFz4A2VN7EPrkbSPt6cmhuhHLU4enYznwCE23GN85g"
+              alt="" width="80" height="80">
+          </a>
+          <h1 class="h3 mb-3 fw-normal text-white">Please sign up</h1>
 
-
-      <div class="split">
+        </div>
 
 
-        <select class="form-floating" style="flex-basis: 20%" aria-label="Default select example" name="title" required>
+
+        <div class="split">
+
+
+          <select class="form-floating" style="flex-basis: 20%" aria-label="Default select example" name="title"
+            required>
             <option value="Mr.">Mr.</option>
             <option value="Mrs.">Mrs.</option>
             <option value="Ms.">Ms.</option>
-        </select>
+          </select>
 
 
-        <div class="form-floating">
-          <input type="text" class="form-control" id="floatingFirstname" name='firstname' placeholder="First name" required>
-          <label for="floatingFirstname" >First name</label>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingFirstname" name='firstname' placeholder="First name"
+              required>
+            <label for="floatingFirstname">First name</label>
+          </div>
+
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingLastname" name='lastname' placeholder="Last name"
+              required>
+            <label for="floatingLastname">Last name</label>
+          </div>
+
         </div>
 
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingLastname" name='lastname' placeholder="Last name" required>
-          <label for="floatingLastname" >Last name</label>
-        </div>
-
-      </div>
-
-      <div class="form-floating">
-        <input type="tel" class="form-control" id="floatingPhonenumber" name='phonenumber' placeholder="Phone number" required>
-        <label for="floatingPhonenumber">Phone number</label>
-      </div>
-
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingEmail" name='email' placeholder="E-mail" required>
-        <label for="floatingEmail">E-mail</label>
-      </div>
-
-      <div class="split">
-
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" name='password' placeholder="Password" required>
-          <label for="floatingPassword">Password</label>
+          <input type="tel" class="form-control" id="floatingPhonenumber" name='phonenumber' placeholder="Phone number"
+            required>
+          <label for="floatingPhonenumber">Phone number</label>
         </div>
 
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" name='confirmpassword' placeholder="Confirm password" required>
-          <label for="floatingPassword">Confirm password</label>
+          <input type="email" class="form-control" id="floatingEmail" name='email' placeholder="E-mail" required>
+          <label for="floatingEmail">E-mail</label>
         </div>
 
-      </div>
+        <div class="split">
 
-      <!-- <div class="checkbox mb-3 text-start text-white">
-        <label>
-          <input type="checkbox" value="agreement" required> By submitting my information, I acknowledge and accept the terms of Doge Airlines' 
-          <a href="#">Privacy Policy and terms and conditions</a> of the registered customer account.
-        </label>
-      </div> -->
-        
-      <a href="/sign-in">
-        <h6>Already have an account?</h6>
-      </a>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name='password' placeholder="Password"
+              required>
+            <label for="floatingPassword">Password</label>
+          </div>
 
-      
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name='confirmpassword'
+              placeholder="Confirm password" required>
+            <label for="floatingPassword">Confirm password</label>
+          </div>
 
-      <div class="text-center">
-        <button class="mybtn" type="submit">Sign up</button>
-      </div>
-    
-    </form>
+        </div>
+
+        <a href="/sign-in">
+          <h6>Already have an account?</h6>
+        </a>
+
+
+
+        <div class="text-center">
+          <button class="mybtn" type="submit">Sign up</button>
+        </div>
+
+      </form>
+
+    </div>
+
+
+    <div class="image-container">
+
+      <img src="https://img.freepik.com/free-photo/fantasy-sky_90839-278.jpg?size=626&ext=jpg" class="fullimage">
+
+    </div>
 
   </div>
-
-  <!-- End of fromcontainer -->
-
-  <div class="image-container">
-
-    <img src="https://img.freepik.com/free-photo/fantasy-sky_90839-278.jpg?size=626&ext=jpg" class="fullimage">
-
-  </div>
-
-</div>
